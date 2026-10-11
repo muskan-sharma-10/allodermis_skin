@@ -1,0 +1,74 @@
+[
+  {
+    "id": "dr-alok-sahoo-allodermis",
+    "handle": "dr-alok-sahoo-allodermis",
+    "name": "Dr. Alok Kumar Sahoo",
+    "title": "Chief Dermatologist, Dermatosurgeon & Hair Transplant Specialist",
+    "qualifications": "MBBS, MD (Dermatology, Venereology & Leprosy), FACP (USA)",
+    "experience": "15+ Years Clinical Practice",
+    "consultationsCount": "25,000+",
+    "specialties": [
+      "Acne Scar Revision",
+      "Hair Restoration Surgery",
+      "Laser Aesthetics",
+      "Clinical Dermatosurgery"
+    ],
+    "bio": "Dr. Alok Kumar Sahoo is an acclaimed board-certified dermatologist and the clinical director of Allodermis. With over 15 years of rigorous clinical practice and specialized training in advanced dermatosurgery, Dr. Sahoo brings an evidence-driven, patient-first approach to complex dermatological conditions and aesthetic transformations.",
+    "image": "https://allodermis.com/cdn/shop/files/Allodermis_Transparent_bg_1.png?v=1750877830&width=512",
+    "clinicLocation": "Patia, KIIT Road, Bhubaneswar"
+  },
+  {
+    "id": "dr-shivani-biswal-allodermis",
+    "handle": "dr-shivani-biswal-allodermis",
+    "name": "Dr. Shivani Biswal",
+    "title": "Senior Aesthetic Dermatologist & Laser Specialist",
+    "qualifications": "MBBS, DNB (Dermatology), Fellowship in Aesthetic Medicine",
+    "experience": "9+ Years Clinical Practice",
+    "consultationsCount": "12,000+",
+    "specialties": [
+      "Pigmentation & Melasma",
+      "Anti-Ageing & Bioremodeling",
+      "Chemical Peeling",
+      "Facial Contouring"
+    ],
+    "bio": "Dr. Shivani Biswal is renowned for her meticulous eye for facial harmony and comprehensive understanding of skin histology. She specializes in non-surgical rejuvenation, advanced medical peels, and tailor-made skincare regimens designed to fortify the epidermal barrier.",
+    "image": "https://allodermis.com/cdn/shop/files/Allodermis_Transparent_bg_1.png?v=1750877830&width=512",
+    "clinicLocation": "Patia, KIIT Road, Bhubaneswar"
+  },
+  {
+    "id": "dr-pranomita-allodermis",
+    "handle": "dr-pranomita-allodermis",
+    "name": "Dr. Pranomita",
+    "title": "Consultant Dermatologist & Pediatric Skin Specialist",
+    "qualifications": "MBBS, MD (Dermatology)",
+    "experience": "8+ Years Clinical Practice",
+    "consultationsCount": "9,500+",
+    "specialties": [
+      "Pediatric Dermatology",
+      "Eczema & Atopic Dermatitis",
+      "Acne Management",
+      "Allergy Diagnostics"
+    ],
+    "bio": "Dr. Pranomita delivers gentle, thorough care for sensitive, compromised skin barriers and chronic inflammatory conditions. She focuses on long-term skin health preservation through gentle therapeutics and scientific habits.",
+    "image": "https://allodermis.com/cdn/shop/files/Allodermis_Transparent_bg_1.png?v=1750877830&width=512",
+    "clinicLocation": "Bhubaneswar"
+  },
+  {
+    "id": "dr-narayanan-allodermis",
+    "handle": "dr-narayanan-allodermis",
+    "name": "Dr. Narayanan",
+    "title": "Dermatologist & Laser Surgeon",
+    "qualifications": "MBBS, DDVL, Fellowship in Dermatosurgery",
+    "experience": "11+ Years Clinical Practice",
+    "consultationsCount": "14,000+",
+    "specialties": [
+      "Laser Hair Removal",
+      "Vascular Lesions",
+      "Tattoo Removal",
+      "Skin Resurfacing"
+    ],
+    "bio": "Dr. Narayanan specializes in precision laser technologies and energy-based medical devices, ensuring highest safety parameters for diverse Fitzpatrick skin types.",
+    "image": "https://allodermis.com/cdn/shop/files/Allodermis_Transparent_bg_1.png?v=1750877830&width=512",
+    "clinicLocation": "Bhubaneswar"
+  }
+]

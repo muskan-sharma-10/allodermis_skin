@@ -1,0 +1,52 @@
+[
+  {
+    "id": "rev-1",
+    "name": "Priyanka Mohapatra",
+    "rating": 5,
+    "date": "2 weeks ago",
+    "treatment": "Acne Scar Treatment (MNRF)",
+    "doctor": "Dr. Alok Sahoo",
+    "review": "I had severe rolling acne scars that troubled me for years. Dr. Alok Sahoo examined my skin with dermoscopy and recommended 4 sessions of MNRF combined with targeted subcision. The textural improvement is beyond what I imagined. The clinic ambiance is so serene, clinical, and reassuring.",
+    "location": "Bhubaneswar"
+  },
+  {
+    "id": "rev-2",
+    "name": "Subhashree Rout",
+    "rating": 5,
+    "date": "1 month ago",
+    "treatment": "Melasma & Pigmentation Management",
+    "doctor": "Dr. Shivani Biswal",
+    "review": "Dr. Shivani took the time to explain the physiology behind my stubborn pigmentation rather than just prescribing random bleaching creams. With the customized chemical peel regimen and barrier repair serums, my skin tone has evened out dramatically without any downtime or irritation.",
+    "location": "Cuttack"
+  },
+  {
+    "id": "rev-3",
+    "name": "Aditya Dash",
+    "rating": 5,
+    "date": "3 weeks ago",
+    "treatment": "US-FDA Laser Hair Reduction",
+    "doctor": "Dr. Alok Sahoo",
+    "review": "Most aesthetic clinics over-promise, but Allodermis stands out for their medical integrity and transparency. The triple-wavelength cooling laser made the entire session virtually painless. The staff is polite, professional, and follows sterile clinical protocols.",
+    "location": "Bhubaneswar"
+  },
+  {
+    "id": "rev-4",
+    "name": "Ananya Pattnaik",
+    "rating": 5,
+    "date": "2 months ago",
+    "treatment": "PDRN Salmon DNA Skin Booster",
+    "doctor": "Dr. Shivani Biswal",
+    "review": "After turning 32, my skin looked dull and dehydrated. The PDRN booster treatment provided an inner, luminous radiance and restored skin elasticity. I love that the dermatologists at Allodermis recommend scientific formulations that actually work.",
+    "location": "Bhubaneswar"
+  },
+  {
+    "id": "rev-5",
+    "name": "Rohan Senapati",
+    "rating": 5,
+    "date": "1 month ago",
+    "treatment": "Alopecia & Scalp Rejuvenation",
+    "doctor": "Dr. Alok Sahoo",
+    "review": "Having consulted multiple clinics without visible hair retention, Dr. Alok’s targeted scalp mesotherapy and clinical topicals halted my shedding within 6 weeks. Truly the premier dermatology center in the region.",
+    "location": "Bhubaneswar"
+  }
+]

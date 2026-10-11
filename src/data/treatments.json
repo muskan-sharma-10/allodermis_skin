@@ -1,0 +1,210 @@
+[
+  {
+    "id": "acne-pimple",
+    "handle": "acne-pimple",
+    "title": "Acne & Pimple Treatment",
+    "category": "Medical Dermatology",
+    "description": "Acne/Pimple at Allodermis. Dermatologist-led treatment - book a consultation with our specialists.",
+    "images": [
+      "https://allodermis.com/cdn/shop/files/laser-beard-shaping.webp?v=1772103065",
+      "https://allodermis.com/cdn/shop/files/Facial_PRP_GFC_Treatment_-_Copy.webp?v=1772104327",
+      "https://allodermis.com/cdn/shop/files/under-eye-treatment.webp?v=1772104370",
+      "https://allodermis.com/cdn/shop/files/biorepeel.webp?v=1772104415"
+    ]
+  },
+  {
+    "id": "acne-scar-treatment",
+    "handle": "acne-scar-treatment",
+    "title": "Acne Scar Treatment (MNRF & Subcision)",
+    "category": "Advanced Aesthetics",
+    "description": "Acne Scar Treatment at Allodermis. Dermatologist-led treatment - book a consultation with our specialists.",
+    "images": [
+      "https://allodermis.com/cdn/shop/files/laser-beard-shaping.webp?v=1772103065",
+      "https://allodermis.com/cdn/shop/files/Facial_PRP_GFC_Treatment_-_Copy.webp?v=1772104327",
+      "https://allodermis.com/cdn/shop/files/under-eye-treatment.webp?v=1772104370",
+      "https://allodermis.com/cdn/shop/files/biorepeel.webp?v=1772104415"
+    ]
+  },
+  {
+    "id": "laser-hair-reduction",
+    "handle": "laser-hair-reduction",
+    "title": "Laser Hair Reduction (US-FDA Approved)",
+    "category": "Laser & Energy",
+    "description": "Laser Hair Reduction at Allodermis. Dermatologist-led treatment - book a consultation with our specialists.",
+    "images": [
+      "https://allodermis.com/cdn/shop/files/laser-beard-shaping.webp?v=1772103065",
+      "https://allodermis.com/cdn/shop/files/Facial_PRP_GFC_Treatment_-_Copy.webp?v=1772104327",
+      "https://allodermis.com/cdn/shop/files/under-eye-treatment.webp?v=1772104370",
+      "https://allodermis.com/cdn/shop/files/biorepeel.webp?v=1772104415"
+    ]
+  },
+  {
+    "id": "chemical-peel",
+    "handle": "chemical-peel",
+    "title": "Clinical Chemical Peels",
+    "category": "Medical Aesthetics",
+    "description": "Chemical Peel at Allodermis. Dermatologist-led treatment - book a consultation with our specialists.",
+    "images": [
+      "https://allodermis.com/cdn/shop/files/laser-beard-shaping.webp?v=1772103065",
+      "https://allodermis.com/cdn/shop/files/Facial_PRP_GFC_Treatment_-_Copy.webp?v=1772104327",
+      "https://allodermis.com/cdn/shop/files/under-eye-treatment.webp?v=1772104370",
+      "https://allodermis.com/cdn/shop/files/biorepeel.webp?v=1772104415"
+    ]
+  },
+  {
+    "id": "skin-pigmentation",
+    "handle": "skin-pigmentation",
+    "title": "Skin Pigmentation & Melasma Treatment",
+    "category": "Pigmentation",
+    "description": "Skin Pigmentation at Allodermis. Dermatologist-led treatment - book a consultation with our specialists.",
+    "images": [
+      "https://allodermis.com/cdn/shop/files/laser-beard-shaping.webp?v=1772103065",
+      "https://allodermis.com/cdn/shop/files/Facial_PRP_GFC_Treatment_-_Copy.webp?v=1772104327",
+      "https://allodermis.com/cdn/shop/files/under-eye-treatment.webp?v=1772104370",
+      "https://allodermis.com/cdn/shop/files/biorepeel.webp?v=1772104415"
+    ]
+  },
+  {
+    "id": "botox",
+    "handle": "botox",
+    "title": "Anti-Wrinkle Injections (Botox)",
+    "category": "Injectables",
+    "description": "Botox at Allodermis. Dermatologist-led treatment - book a consultation with our specialists.",
+    "images": [
+      "https://allodermis.com/cdn/shop/files/laser-beard-shaping.webp?v=1772103065",
+      "https://allodermis.com/cdn/shop/files/Facial_PRP_GFC_Treatment_-_Copy.webp?v=1772104327",
+      "https://allodermis.com/cdn/shop/files/under-eye-treatment.webp?v=1772104370",
+      "https://allodermis.com/cdn/shop/files/biorepeel.webp?v=1772104415"
+    ]
+  },
+  {
+    "id": "dermal-fillers",
+    "handle": "dermal-fillers",
+    "title": "Dermal Fillers & Facial Contouring",
+    "category": "Injectables",
+    "description": "Dermal Fillers at Allodermis. Dermatologist-led treatment - book a consultation with our specialists.",
+    "images": [
+      "https://allodermis.com/cdn/shop/files/laser-beard-shaping.webp?v=1772103065",
+      "https://allodermis.com/cdn/shop/files/Facial_PRP_GFC_Treatment_-_Copy.webp?v=1772104327",
+      "https://allodermis.com/cdn/shop/files/under-eye-treatment.webp?v=1772104370",
+      "https://allodermis.com/cdn/shop/files/biorepeel.webp?v=1772104415"
+    ]
+  },
+  {
+    "id": "pdrn-skin-booster",
+    "handle": "pdrn-skin-booster",
+    "title": "PDRN Salmon DNA Skin Booster",
+    "category": "Skin Rejuvenation",
+    "description": "PDRN Skin Booster at Allodermis. Dermatologist-led treatment - book a consultation with our specialists.",
+    "images": [
+      "https://allodermis.com/cdn/shop/files/laser-beard-shaping.webp?v=1772103065",
+      "https://allodermis.com/cdn/shop/files/Facial_PRP_GFC_Treatment_-_Copy.webp?v=1772104327",
+      "https://allodermis.com/cdn/shop/files/under-eye-treatment.webp?v=1772104370",
+      "https://allodermis.com/cdn/shop/files/biorepeel.webp?v=1772104415"
+    ]
+  },
+  {
+    "id": "profhilo",
+    "handle": "profhilo",
+    "title": "Profhilo Bioremodeling",
+    "category": "Skin Rejuvenation",
+    "description": "Profhilo at Allodermis. Dermatologist-led treatment - book a consultation with our specialists.",
+    "images": [
+      "https://allodermis.com/cdn/shop/files/laser-beard-shaping.webp?v=1772103065",
+      "https://allodermis.com/cdn/shop/files/Facial_PRP_GFC_Treatment_-_Copy.webp?v=1772104327",
+      "https://allodermis.com/cdn/shop/files/under-eye-treatment.webp?v=1772104370",
+      "https://allodermis.com/cdn/shop/files/biorepeel.webp?v=1772104415"
+    ]
+  },
+  {
+    "id": "hifu",
+    "handle": "hifu",
+    "title": "HIFU Non-Surgical Skin Tightening",
+    "category": "Lifting & Tightening",
+    "description": "HIFU at Allodermis. Dermatologist-led treatment - book a consultation with our specialists.",
+    "images": [
+      "https://allodermis.com/cdn/shop/files/laser-beard-shaping.webp?v=1772103065",
+      "https://allodermis.com/cdn/shop/files/Facial_PRP_GFC_Treatment_-_Copy.webp?v=1772104327",
+      "https://allodermis.com/cdn/shop/files/under-eye-treatment.webp?v=1772104370",
+      "https://allodermis.com/cdn/shop/files/biorepeel.webp?v=1772104415"
+    ]
+  },
+  {
+    "id": "carbon-laser-peel",
+    "handle": "carbon-laser-peel",
+    "title": "Carbon Laser Peel (Hollywood Glow)",
+    "category": "Laser & Energy",
+    "description": "Carbon laser peel at Allodermis. Dermatologist-led treatment - book a consultation with our specialists.",
+    "images": [
+      "https://allodermis.com/cdn/shop/files/laser-beard-shaping.webp?v=1772103065",
+      "https://allodermis.com/cdn/shop/files/Facial_PRP_GFC_Treatment_-_Copy.webp?v=1772104327",
+      "https://allodermis.com/cdn/shop/files/under-eye-treatment.webp?v=1772104370",
+      "https://allodermis.com/cdn/shop/files/biorepeel.webp?v=1772104415"
+    ]
+  },
+  {
+    "id": "allopecia",
+    "handle": "allopecia",
+    "title": "Alopecia & Hair Loss Treatments",
+    "category": "Hair Restoration",
+    "description": "Allopecia at Allodermis. Dermatologist-led treatment - book a consultation with our specialists.",
+    "images": [
+      "https://allodermis.com/cdn/shop/files/laser-beard-shaping.webp?v=1772103065",
+      "https://allodermis.com/cdn/shop/files/Facial_PRP_GFC_Treatment_-_Copy.webp?v=1772104327",
+      "https://allodermis.com/cdn/shop/files/under-eye-treatment.webp?v=1772104370",
+      "https://allodermis.com/cdn/shop/files/biorepeel.webp?v=1772104415"
+    ]
+  },
+  {
+    "id": "dark-circle",
+    "handle": "dark-circle",
+    "title": "Dark Circle Removal & Under Eye Care",
+    "category": "Medical Aesthetics",
+    "description": "Dark Circle at Allodermis. Dermatologist-led treatment - book a consultation with our specialists.",
+    "images": [
+      "https://allodermis.com/cdn/shop/files/laser-beard-shaping.webp?v=1772103065",
+      "https://allodermis.com/cdn/shop/files/Facial_PRP_GFC_Treatment_-_Copy.webp?v=1772104327",
+      "https://allodermis.com/cdn/shop/files/under-eye-treatment.webp?v=1772104370",
+      "https://allodermis.com/cdn/shop/files/biorepeel.webp?v=1772104415"
+    ]
+  },
+  {
+    "id": "open-pores",
+    "handle": "open-pores",
+    "title": "Open Pores & Skin Texture Refinement",
+    "category": "Skin Rejuvenation",
+    "description": "Open Pores at Allodermis. Dermatologist-led treatment - book a consultation with our specialists.",
+    "images": [
+      "https://allodermis.com/cdn/shop/files/laser-beard-shaping.webp?v=1772103065",
+      "https://allodermis.com/cdn/shop/files/Facial_PRP_GFC_Treatment_-_Copy.webp?v=1772104327",
+      "https://allodermis.com/cdn/shop/files/under-eye-treatment.webp?v=1772104370",
+      "https://allodermis.com/cdn/shop/files/biorepeel.webp?v=1772104415"
+    ]
+  },
+  {
+    "id": "ageing-issues",
+    "handle": "ageing-issues",
+    "title": "Premature Ageing & Fine Lines Solutions",
+    "category": "Anti-Ageing",
+    "description": "Ageing Issues at Allodermis. Dermatologist-led treatment - book a consultation with our specialists.",
+    "images": [
+      "https://allodermis.com/cdn/shop/files/laser-beard-shaping.webp?v=1772103065",
+      "https://allodermis.com/cdn/shop/files/Facial_PRP_GFC_Treatment_-_Copy.webp?v=1772104327",
+      "https://allodermis.com/cdn/shop/files/under-eye-treatment.webp?v=1772104370",
+      "https://allodermis.com/cdn/shop/files/biorepeel.webp?v=1772104415"
+    ]
+  },
+  {
+    "id": "stretch-marks",
+    "handle": "stretch-marks",
+    "title": "Stretch Marks & Collagen Induction",
+    "category": "Body Aesthetics",
+    "description": "Stretch Marks at Allodermis. Dermatologist-led treatment - book a consultation with our specialists.",
+    "images": [
+      "https://allodermis.com/cdn/shop/files/laser-beard-shaping.webp?v=1772103065",
+      "https://allodermis.com/cdn/shop/files/Facial_PRP_GFC_Treatment_-_Copy.webp?v=1772104327",
+      "https://allodermis.com/cdn/shop/files/under-eye-treatment.webp?v=1772104370",
+      "https://allodermis.com/cdn/shop/files/biorepeel.webp?v=1772104415"
+    ]
+  }
+]
