@@ -3,9 +3,35 @@ import doctorsData from '@/data/doctors.json';
 import treatmentsData from '@/data/treatments.json';
 import reviewsData from '@/data/reviews.json';
 import articlesData from '@/data/articles.json';
+import categoriesData from '@/data/categories.json';
+import treatmentResultsData from '@/data/treatment_results.json';
+import faqsData from '@/data/faqs.json';
 import { Product } from '@/context/CartContext';
 
 export type { Product } from '@/context/CartContext';
+
+export interface Category {
+  name: string;
+  href: string;
+  img: string;
+}
+
+export interface TreatmentResult {
+  id?: string;
+  title: string;
+  category: string;
+  treatment: string;
+  desc: string;
+  beforeImg: string;
+  beforeAlt?: string;
+  afterImg: string;
+  afterAlt?: string;
+}
+
+export interface FAQ {
+  question: string;
+  answer: string;
+}
 
 export interface Doctor {
   id: string;
@@ -57,6 +83,9 @@ const allDoctors = doctorsData as unknown as Doctor[];
 const allTreatments = treatmentsData as unknown as Treatment[];
 const allReviews = reviewsData as unknown as Review[];
 const allArticles = articlesData as unknown as Article[];
+const allCategories = categoriesData as unknown as Category[];
+const allTreatmentResults = treatmentResultsData as unknown as TreatmentResult[];
+const allFaqs = faqsData as unknown as FAQ[];
 
 export function getProducts(): Product[] {
   return allProducts;
@@ -106,4 +135,16 @@ export function getArticles(): Article[] {
 
 export function getArticleBySlug(slug: string): Article | undefined {
   return allArticles.find((a) => a.slug === slug);
+}
+
+export function getCategories(): Category[] {
+  return allCategories;
+}
+
+export function getTreatmentResults(): TreatmentResult[] {
+  return allTreatmentResults;
+}
+
+export function getFaqs(): FAQ[] {
+  return allFaqs;
 }

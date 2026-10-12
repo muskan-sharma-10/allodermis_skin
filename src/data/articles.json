@@ -1,52 +1,42 @@
 [
   {
-    "slug": "open-pores-treatment-explained-causes-what-actually-works-best-procedures-timelines-and-prevention",
-    "title": "Open Pores Treatment Explained: Causes, Scientific Procedures & Prevention",
-    "category": "Clinical Dermatology",
-    "readTime": "6 min read",
-    "publishedAt": "October 2026",
-    "author": "Dr. Alok Sahoo, MD Dermatology",
-    "summary": "An evidence-based guide into why pores appear enlarged on Indian skin types and the clinically validated protocols—from salicylic acid exfoliation to MNRF collagen remodeling—that actually deliver lasting refinement.",
-    "image": "https://allodermis.com/cdn/shop/files/Allodermis_Transparent_bg_1.png?v=1750877830&width=800"
-  },
-  {
-    "slug": "skin-pigmentation-treatment-at-allodermis-causes-symptoms-amp-advanced-treatment-options",
-    "title": "Skin Pigmentation & Melasma: Causes, Hormonal Triggers & Advanced Solutions",
-    "category": "Medical Aesthetics",
-    "readTime": "8 min read",
-    "publishedAt": "September 2026",
-    "author": "Dr. Shivani Biswal, DNB Dermatology",
-    "summary": "Understanding epidermal vs dermal melanin deposition, UV-induced melanogenesis, and why tranexamic acid, cysteamine, and Q-switched laser toning outperform superficial fairness creams.",
-    "image": "https://allodermis.com/cdn/shop/files/Allodermis_Transparent_bg_1.png?v=1750877830&width=800"
-  },
-  {
-    "slug": "microneedling-radiofrequency-mnrf-how-it-rebuilds-skin-from-the-inside-out",
-    "title": "Microneedling Radiofrequency (MNRF): How It Rebuilds Dermal Matrix",
-    "category": "Advanced Technologies",
+    "slug": "how-to-remove-sun-tan-from-your-face",
+    "title": "How to Remove Sun Tan From Your Face: A Dermatologist's 4-Week Home Plan",
+    "category": "Pigmentation & Tan Care",
     "readTime": "5 min read",
-    "publishedAt": "August 2026",
+    "publishedAt": "Recent Post",
     "author": "Dr. Alok Sahoo, MD Dermatology",
-    "summary": "Explore how targeted thermal fractional energy stimulates neocollagenesis and elastin synthesis at controlled depths to smooth depressed scars and tighten lax tissue.",
-    "image": "https://allodermis.com/cdn/shop/files/Allodermis_Transparent_bg_1.png?v=1750877830&width=800"
+    "summary": "Step-by-step clinical protocol to reverse epidermal tanning without compromising your delicate skin barrier, including antioxidant repair and barrier recovery.",
+    "image": "https://allodermis.com/cdn/shop/articles/66d78b61942b851798ae3c39_suntan_fm_80.jpg?v=1791213123&width=1100"
   },
   {
-    "slug": "alopecia-hair-loss-causes-types-diagnosis-and-evidence-based-treatments",
-    "title": "Alopecia & Hair Thinning: Evidence-Based Clinical Treatments",
-    "category": "Trichology",
+    "slug": "best-serum-for-dark-spots",
+    "title": "The Best Serum for Dark Spots Depends on the Spot: A Dermatologist's Ingredient Guide",
+    "category": "Active Serums",
+    "readTime": "6 min read",
+    "publishedAt": "Recent Post",
+    "author": "Dr. Shivani Biswal, MD Dermatology",
+    "summary": "Match the precise molecular active—Azelaic Acid, Tranexamic Acid, Alpha Arbutin or Kojic Acid—to your exact pigmentation pattern for visible fading.",
+    "image": "https://allodermis.com/cdn/shop/files/s-cl-skincare.webp?v=1751734872&width=800"
+  },
+  {
+    "slug": "best-cream-for-skin-pigmentation-tyrodin-vs-melaglow-vs-biluma",
+    "title": "Best Cream for Skin Pigmentation: Tyrodin vs Melaglow vs Biluma vs Kovite Compared",
+    "category": "Dermatologist Guide",
     "readTime": "7 min read",
-    "publishedAt": "August 2026",
-    "author": "Dr. Alok Sahoo, Hair Specialist",
-    "summary": "From androgenetic miniaturization to telogen effluvium, understand how trichoscopic scalp analysis guides customized combinations of minoxidil, peptides, and GFC therapy.",
-    "image": "https://allodermis.com/cdn/shop/files/Allodermis_Transparent_bg_1.png?v=1750877830&width=800"
+    "publishedAt": "Recent Post",
+    "author": "Dr. Narayanan B, MD Dermatology",
+    "summary": "An ingredient-by-ingredient medical comparison of India's leading physician-prescribed depigmenting creams, potency rankings, and ideal skin types.",
+    "image": "https://allodermis.com/cdn/shop/files/s-cl-body.webp?v=1751734872&width=800"
   },
   {
-    "slug": "case-1-comedonal-acne",
-    "title": "Case Study: Treating Persistent Comedonal & Inflammatory Acne",
-    "category": "Case Studies",
-    "readTime": "4 min read",
-    "publishedAt": "July 2026",
-    "author": "Allodermis Clinical Team",
-    "summary": "Clinical transformation report of a 24-year-old female patient with recurrent comedonal acne treated with black peel protocols, adapalene formulation, and sebum control.",
-    "image": "https://allodermis.com/cdn/shop/files/Allodermis_Transparent_bg_1.png?v=1750877830&width=800"
+    "slug": "bioderma-pigmentbio-foaming-cream-review",
+    "title": "Bioderma Pigmentbio Foaming Cream Review: How to Use It, Who It Suits, & Results by Week",
+    "category": "Product Review",
+    "readTime": "5 min read",
+    "publishedAt": "Recent Post",
+    "author": "Dr. Alok Sahoo, MD Dermatology",
+    "summary": "In-depth review of the dual AHA/microbead exfoliating cleanser: contact time rules, weekly results timeline, and who should combine it with night renewer.",
+    "image": "https://allodermis.com/cdn/shop/files/s-cl-new-arrivals.webp?v=1751734872&width=800"
   }
 ]

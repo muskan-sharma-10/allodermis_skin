@@ -30,18 +30,18 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const imgSrc = product.images?.[0]?.src || product.image?.src || '/images/hero-clinic.jpg';
 
   return (
-    <div className="group relative flex flex-col bg-white border border-subtle-border rounded-xl p-4 transition-all duration-300 hover:shadow-[0_12px_32px_rgba(0,0,0,0.06)] hover:border-[#DCD5CD]">
+    <div className="group relative flex flex-col bg-white border border-subtle-border rounded-2xl p-5 sm:p-6 luxury-card transition-all duration-300">
       
       {/* Top Badges & Wishlist */}
-      <div className="flex items-center justify-between mb-3 z-10">
-        <div className="flex flex-wrap gap-1.5">
+      <div className="flex items-center justify-between mb-4 z-10">
+        <div className="flex flex-wrap gap-2">
           {product.product_type && (
-            <span className="text-[10px] tracking-wider uppercase font-semibold px-2 py-0.5 rounded-full bg-ivory text-taupe border border-subtle-border">
+            <span className="text-xs tracking-wider uppercase font-semibold px-2.5 py-1 rounded-full bg-ivory text-taupe border border-subtle-border">
               {product.product_type}
             </span>
           )}
           {hasDiscount && (
-            <span className="text-[10px] tracking-wider uppercase font-bold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200">
+            <span className="text-xs tracking-wider uppercase font-bold px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200">
               {discountPercent}% OFF
             </span>
           )}
@@ -53,7 +53,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             toggleWishlist(product.id);
           }}
           aria-label={inWishlist ? 'Remove from wishlist' : 'Add to wishlist'}
-          className="p-1.5 rounded-full bg-white/80 hover:bg-white text-taupe hover:text-rose-600 transition-colors shadow-sm"
+          className="p-2 rounded-full bg-white/90 hover:bg-white text-taupe hover:text-rose-600 transition-colors shadow-xs"
         >
           <Heart
             className={`w-4 h-4 transition-colors ${
@@ -64,61 +64,61 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       </div>
 
       {/* Product Image */}
-      <Link href={`/products/${product.handle}`} className="relative aspect-square w-full rounded-lg overflow-hidden bg-ivory/60 mb-4 block">
+      <Link href={`/products/${product.handle}`} className="relative aspect-square w-full rounded-xl overflow-hidden bg-ivory/50 mb-5 block">
         <Image
           src={imgSrc}
           alt={product.title}
           fill
-          className="object-contain p-3 group-hover:scale-105 transition-transform duration-500"
+          className="object-contain p-4 group-hover:scale-105 transition-transform duration-500"
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
         />
       </Link>
 
       {/* Product Information */}
-      <div className="flex-1 flex flex-col justify-between space-y-2">
+      <div className="flex-1 flex flex-col justify-between space-y-3">
         <div>
-          <span className="text-[11px] text-taupe uppercase tracking-wider font-medium block">
+          <span className="text-xs text-taupe uppercase tracking-wider font-semibold block">
             {product.vendor || 'Allodermis Clinical'}
           </span>
           <Link
             href={`/products/${product.handle}`}
-            className="font-medium text-sm text-charcoal hover:text-black line-clamp-2 leading-snug group-hover:underline decoration-subtle-border underline-offset-4 mt-0.5"
+            className="font-medium text-base sm:text-lg text-charcoal hover:text-black line-clamp-2 leading-snug group-hover:underline decoration-subtle-border underline-offset-4 mt-1"
           >
             {product.title}
           </Link>
         </div>
 
         {/* Rating and Clinical Proof */}
-        <div className="flex items-center gap-1.5 text-xs text-taupe pt-1">
+        <div className="flex items-center gap-2 text-sm text-taupe pt-1">
           <div className="flex items-center text-amber-500">
-            <Star className="w-3.5 h-3.5 fill-current" />
+            <Star className="w-4 h-4 fill-current" />
           </div>
-          <span className="font-semibold text-charcoal text-[11px]">4.9</span>
-          <span className="text-[11px] text-taupe">(Verified Rx)</span>
+          <span className="font-bold text-charcoal text-xs sm:text-sm">4.9</span>
+          <span className="text-xs text-taupe font-medium">• Verified Dermatologist Rx</span>
         </div>
 
         {/* Price & Action */}
-        <div className="pt-2 border-t border-subtle-border/60 flex items-center justify-between gap-2">
+        <div className="pt-3 border-t border-subtle-border/70 flex items-center justify-between gap-3">
           <div>
-            <div className="flex items-baseline gap-1.5">
-              <span className="text-base font-semibold text-charcoal">
+            <div className="flex items-baseline gap-2">
+              <span className="text-lg sm:text-xl font-bold text-charcoal">
                 ₹{priceNum.toFixed(2)}
               </span>
               {hasDiscount && (
-                <span className="text-xs text-taupe line-through">
+                <span className="text-sm text-taupe line-through">
                   ₹{compareNum.toFixed(2)}
                 </span>
               )}
             </div>
-            <span className="text-[10px] text-emerald-800 font-medium block">
-              In Stock • Rx Verified
+            <span className="text-xs text-emerald-800 font-semibold block mt-0.5">
+              In Stock • 100% Genuine
             </span>
           </div>
 
           <button
             onClick={() => addToCart(product, 1, mainVariant.id)}
             aria-label={`Add ${product.title} to bag`}
-            className="p-2.5 rounded-full bg-[#171717] text-white hover:bg-black hover:scale-105 active:scale-95 transition-all flex items-center justify-center flex-shrink-0 shadow-sm"
+            className="p-3 rounded-full bg-[#171717] text-white hover:bg-black hover:scale-105 active:scale-95 transition-all flex items-center justify-center flex-shrink-0 shadow-sm"
           >
             <ShoppingBag className="w-4 h-4" />
           </button>

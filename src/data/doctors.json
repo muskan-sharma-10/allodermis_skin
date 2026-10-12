@@ -1,74 +1,147 @@
 [
   {
-    "id": "dr-alok-sahoo-allodermis",
-    "handle": "dr-alok-sahoo-allodermis",
-    "name": "Dr. Alok Kumar Sahoo",
-    "title": "Chief Dermatologist, Dermatosurgeon & Hair Transplant Specialist",
-    "qualifications": "MBBS, MD (Dermatology, Venereology & Leprosy), FACP (USA)",
-    "experience": "15+ Years Clinical Practice",
+    "id": "dr-alok-sahoo",
+    "handle": "dr-alok-sahoo",
+    "name": "Dr. Alok Sahoo",
+    "title": "MD Dermatology (AIIMS New Delhi) · Clinical Dermatologist · Skin & Hair Specialist",
+    "qualifications": "MD Dermatology (AIIMS New Delhi)",
+    "experience": "11+ Years Experience",
     "consultationsCount": "25,000+",
     "specialties": [
-      "Acne Scar Revision",
-      "Hair Restoration Surgery",
-      "Laser Aesthetics",
-      "Clinical Dermatosurgery"
+      "Acne & Pigmentation",
+      "Hair Loss & Scalp Health",
+      "Anti-Aging & Rejuvenation",
+      "PRP & GFC Therapy"
     ],
-    "bio": "Dr. Alok Kumar Sahoo is an acclaimed board-certified dermatologist and the clinical director of Allodermis. With over 15 years of rigorous clinical practice and specialized training in advanced dermatosurgery, Dr. Sahoo brings an evidence-driven, patient-first approach to complex dermatological conditions and aesthetic transformations.",
-    "image": "https://allodermis.com/cdn/shop/files/Allodermis_Transparent_bg_1.png?v=1750877830&width=512",
-    "clinicLocation": "Patia, KIIT Road, Bhubaneswar"
+    "bio": "Healthy skin is a reflection of internal balance — my goal is to treat both, with care and clarity.",
+    "image": "https://cdn.shopify.com/s/files/1/0681/2824/3765/files/Dr_Alok_214f3751-49be-45e3-903b-fb9fc0e4aaa5.jpg?v=1774736736",
+    "clinicLocation": "KIIT Road, Patia, Bhubaneswar"
   },
   {
-    "id": "dr-shivani-biswal-allodermis",
-    "handle": "dr-shivani-biswal-allodermis",
-    "name": "Dr. Shivani Biswal",
-    "title": "Senior Aesthetic Dermatologist & Laser Specialist",
-    "qualifications": "MBBS, DNB (Dermatology), Fellowship in Aesthetic Medicine",
-    "experience": "9+ Years Clinical Practice",
-    "consultationsCount": "12,000+",
+    "id": "dr-narayanan-b",
+    "handle": "dr-narayanan-b",
+    "name": "Dr. Narayanan B",
+    "title": "MD Dermatology (AIIMS New Delhi) · Award-Winning Dermatologist · 20+ Publications",
+    "qualifications": "MD Dermatology (AIIMS New Delhi)",
+    "experience": "9+ Years Experience",
+    "consultationsCount": "18,000+",
     "specialties": [
-      "Pigmentation & Melasma",
-      "Anti-Ageing & Bioremodeling",
-      "Chemical Peeling",
-      "Facial Contouring"
+      "Vitiligo & Pigmentary Disorders",
+      "Acne & Scar Management",
+      "Pediatric Skin",
+      "Laser & PRP"
     ],
-    "bio": "Dr. Shivani Biswal is renowned for her meticulous eye for facial harmony and comprehensive understanding of skin histology. She specializes in non-surgical rejuvenation, advanced medical peels, and tailor-made skincare regimens designed to fortify the epidermal barrier.",
-    "image": "https://allodermis.com/cdn/shop/files/Allodermis_Transparent_bg_1.png?v=1750877830&width=512",
-    "clinicLocation": "Patia, KIIT Road, Bhubaneswar"
+    "bio": "Great skin starts with understanding — every diagnosis I make is backed by science and shaped by empathy.",
+    "image": "https://cdn.shopify.com/s/files/1/0681/2824/3765/files/Dr._Narayanan.jpg?v=1774736735",
+    "clinicLocation": "KIIT Road, Patia, Bhubaneswar"
   },
   {
-    "id": "dr-pranomita-allodermis",
-    "handle": "dr-pranomita-allodermis",
-    "name": "Dr. Pranomita",
-    "title": "Consultant Dermatologist & Pediatric Skin Specialist",
-    "qualifications": "MBBS, MD (Dermatology)",
-    "experience": "8+ Years Clinical Practice",
-    "consultationsCount": "9,500+",
-    "specialties": [
-      "Pediatric Dermatology",
-      "Eczema & Atopic Dermatitis",
-      "Acne Management",
-      "Allergy Diagnostics"
-    ],
-    "bio": "Dr. Pranomita delivers gentle, thorough care for sensitive, compromised skin barriers and chronic inflammatory conditions. She focuses on long-term skin health preservation through gentle therapeutics and scientific habits.",
-    "image": "https://allodermis.com/cdn/shop/files/Allodermis_Transparent_bg_1.png?v=1750877830&width=512",
-    "clinicLocation": "Bhubaneswar"
-  },
-  {
-    "id": "dr-narayanan-allodermis",
-    "handle": "dr-narayanan-allodermis",
-    "name": "Dr. Narayanan",
-    "title": "Dermatologist & Laser Surgeon",
-    "qualifications": "MBBS, DDVL, Fellowship in Dermatosurgery",
-    "experience": "11+ Years Clinical Practice",
+    "id": "dr-archana-singh",
+    "handle": "dr-archana-singh",
+    "name": "Dr. Archana Singh",
+    "title": "MBBS, DNB Dermatology & Venereology · Aesthetic Dermatologist · Member, IADVL",
+    "qualifications": "MBBS, DNB Dermatology & Venereology",
+    "experience": "8+ Years Experience",
     "consultationsCount": "14,000+",
     "specialties": [
-      "Laser Hair Removal",
-      "Vascular Lesions",
-      "Tattoo Removal",
-      "Skin Resurfacing"
+      "Root Cause Dermatology",
+      "PCOS Skin Issues",
+      "Hair Fall & Scalp",
+      "Anti-Aging Programs"
     ],
-    "bio": "Dr. Narayanan specializes in precision laser technologies and energy-based medical devices, ensuring highest safety parameters for diverse Fitzpatrick skin types.",
+    "bio": "I treat the root — not just the rash. My aim is to help you feel at home in your skin again.",
+    "image": "https://cdn.shopify.com/s/files/1/0681/2824/3765/files/Dr_Archana.jpg?v=1774736735",
+    "clinicLocation": "KIIT Road, Patia, Bhubaneswar"
+  },
+  {
+    "id": "dr-shivani-biswal",
+    "handle": "dr-shivani-biswal",
+    "name": "Dr. Shivani Biswal",
+    "title": "MBBS, MD Dermatology (DVL) · Clinical & Aesthetic Dermatologist",
+    "qualifications": "MBBS, MD Dermatology (DVL)",
+    "experience": "7+ Years Experience",
+    "consultationsCount": "12,000+",
+    "specialties": [
+      "Chronic Skin Conditions",
+      "Chemical Peels & GFC",
+      "Dermal Fillers & Threads",
+      "Facial Rejuvenation"
+    ],
+    "bio": "Dr. Shivani blends strong clinical training with advanced aesthetic expertise to offer safe, naturally enhanced results.",
+    "image": "https://allodermis.com/cdn/shop/files/Dr._Shivani.jpg?v=1776391389&width=480",
+    "clinicLocation": "KIIT Road, Patia, Bhubaneswar"
+  },
+  {
+    "id": "dr-karthik-l",
+    "handle": "dr-karthik-l",
+    "name": "Dr. Karthik L",
+    "title": "MD Dermatology (AIIMS) · DNB · MRCP (SCE) · Ex–Senior Resident, AIIMS",
+    "qualifications": "MD Dermatology (AIIMS), DNB, MRCP (SCE)",
+    "experience": "6+ Years Experience",
+    "consultationsCount": "10,000+",
+    "specialties": [
+      "Acne & Hair Loss",
+      "Laser Treatments",
+      "PRP Therapies",
+      "Non-Surgical Contouring"
+    ],
+    "bio": "Every skin has a story — and the best care starts by listening to it.",
+    "image": "https://cdn.shopify.com/s/files/1/0681/2824/3765/files/Dr_Karthik.jpg?v=1774736736",
+    "clinicLocation": "KIIT Road, Patia, Bhubaneswar"
+  },
+  {
+    "id": "dr-sanjay-singh",
+    "handle": "dr-sanjay-singh",
+    "name": "Dr. Sanjay Singh",
+    "title": "MD Dermatology (AIIMS) · DNB · MRCP (SCE) · Ex–Senior Resident, AIIMS",
+    "qualifications": "MD Dermatology (AIIMS), DNB, MRCP",
+    "experience": "18+ Years Experience",
+    "consultationsCount": "30,000+",
+    "specialties": [
+      "Hair Transplant",
+      "Cosmetic Dermatology",
+      "Laser Medicine",
+      "Regenerative Treatments"
+    ],
+    "bio": "Leading surgical precision and aesthetic excellence honed over nearly two decades of clinical and operative mastery.",
+    "image": "https://allodermis.com/cdn/shop/files/Dr._Sanjay_Singh.webp?v=1776391290&width=480",
+    "clinicLocation": "KIIT Road, Patia, Bhubaneswar"
+  },
+  {
+    "id": "dr-namrata-nidhi",
+    "handle": "dr-namrata-nidhi",
+    "name": "Dr. Namrata Nidhi",
+    "title": "MD Dermatology & Venereology · Clinical & Cosmetic Dermatologist",
+    "qualifications": "MD Dermatology & Venereology",
+    "experience": "5+ Years Experience",
+    "consultationsCount": "8,500+",
+    "specialties": [
+      "Clinical Dermatology",
+      "Chemical Peels & Lasers",
+      "Skin Barrier Restoration",
+      "Anti-Aging"
+    ],
+    "bio": "Dr. Namrata combines gentle care with scientific precision to create holistic, personalized skin programs.",
+    "image": "https://allodermis.com/cdn/shop/files/Dr_Namrata_5f12f1e0-7991-495b-93d3-cf872301ce03.jpg?v=1790757351&width=480",
+    "clinicLocation": "KIIT Road, Patia, Bhubaneswar"
+  },
+  {
+    "id": "dr-pranomita-sahoo",
+    "handle": "dr-pranomita-sahoo",
+    "name": "Dr. Pranomita Sahoo",
+    "title": "MD Dermatology, Venereology & Leprosy · Award-Winning Dermatologist",
+    "qualifications": "MD Dermatology, Venereology & Leprosy",
+    "experience": "2+ Years Experience",
+    "consultationsCount": "5,000+",
+    "specialties": [
+      "Acne & Acne Scars",
+      "Laser Skin Treatments",
+      "Pigmentation",
+      "Vitiligo Surgery",
+      "PRP & GFC Hair Therapy"
+    ],
+    "bio": "Dr. Pranomita combines clinical expertise with advanced dermatology procedures to deliver personalized and effective skin care.",
     "image": "https://allodermis.com/cdn/shop/files/Allodermis_Transparent_bg_1.png?v=1750877830&width=512",
-    "clinicLocation": "Bhubaneswar"
+    "clinicLocation": "KIIT Road, Patia, Bhubaneswar"
   }
 ]

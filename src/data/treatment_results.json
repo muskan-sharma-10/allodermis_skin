@@ -1,0 +1,110 @@
+[
+  {
+    "id": "forehead-acne",
+    "title": "Forehead Acne",
+    "category": "Acne & Pigmentation",
+    "treatment": "Targeted Acne Clearance & Chemical Peels",
+    "desc": "Significant reduction in inflammatory comedones, pustules, and forehead congestion within 4 weeks.",
+    "beforeImg": "https://allodermis.com/cdn/shop/files/1.webp?v=1769148211&width=480",
+    "afterImg": "https://allodermis.com/cdn/shop/files/1_1.webp?v=1769148210&width=480"
+  },
+  {
+    "id": "cheeks-acne",
+    "title": "Cheeks Acne & Blemishes",
+    "category": "Acne & Pigmentation",
+    "treatment": "Medical Black Peel & Dermoscopy",
+    "desc": "Clearance of active cheek breakouts and reduction in post-inflammatory erythema and redness.",
+    "beforeImg": "https://allodermis.com/cdn/shop/files/2.webp?v=1769149777&width=480",
+    "afterImg": "https://allodermis.com/cdn/shop/files/2_1.webp?v=1769149774&width=480"
+  },
+  {
+    "id": "unwanted-tattoo",
+    "title": "Unwanted Tattoo Removal",
+    "category": "Laser Treatment",
+    "treatment": "Q-Switched Nd:YAG Laser Toning",
+    "desc": "Progressive laser pigment shattering across sessions without epidermal scarring or hyperpigmentation.",
+    "beforeImg": "https://allodermis.com/cdn/shop/files/image2.webp?v=1769146057&width=480",
+    "afterImg": "https://allodermis.com/cdn/shop/files/image3.webp?v=1769146072&width=480"
+  },
+  {
+    "id": "visible-scars",
+    "title": "Visible Acne Scars Revision",
+    "category": "Laser Treatment",
+    "treatment": "Fractional MNRF & Subcision",
+    "desc": "Dermal matrix collagen remodeling resulting in smoother skin texture and raised atrophic scars.",
+    "beforeImg": "https://allodermis.com/cdn/shop/files/image1.webp?v=1769146319&width=480",
+    "afterImg": "https://allodermis.com/cdn/shop/files/image2_38f99e10-faf6-4edb-a29a-c7319665498c.webp?v=1769146327&width=480"
+  },
+  {
+    "id": "thin-lips",
+    "title": "Lip Hydration & Volumization",
+    "category": "Anti-Ageing",
+    "treatment": "Dermal Filler & Bioremodeling",
+    "desc": "Natural hyaluronic acid enhancement restoring lip definition, hydration, and youthful symmetry.",
+    "beforeImg": "https://allodermis.com/cdn/shop/files/image4_1cf856db-f510-494c-91b9-7519d82f81d5.webp?v=1769150888&width=480",
+    "afterImg": "https://allodermis.com/cdn/shop/files/image1_47a218a5-e358-41ce-9744-8f171d94df6b.webp?v=1769150888&width=480"
+  },
+  {
+    "id": "nose-shape",
+    "title": "Non-Surgical Rhinoplasty",
+    "category": "Anti-Ageing",
+    "treatment": "Precision Dermal Filler Alignment",
+    "desc": "Subtle bridge alignment and tip refinement with zero surgical downtime or incisions.",
+    "beforeImg": "https://allodermis.com/cdn/shop/files/image19.webp?v=1769152280&width=480",
+    "afterImg": "https://allodermis.com/cdn/shop/files/image12.webp?v=1769152280&width=480"
+  },
+  {
+    "id": "legs-hair-removal",
+    "title": "Thigh & Legs Hair Reduction",
+    "category": "Laser Hair Removal",
+    "treatment": "Triple-Wavelength Diode Chilling Laser",
+    "desc": "Painless laser hair reduction targeting deep and superficial hair follicles safely on Indian skin.",
+    "beforeImg": "https://allodermis.com/cdn/shop/files/image9.webp?v=1769147002&width=480",
+    "afterImg": "https://allodermis.com/cdn/shop/files/image4.webp?v=1769147002&width=480"
+  },
+  {
+    "id": "back-hair-removal",
+    "title": "Abdominal & Back Hair Reduction",
+    "category": "Laser Hair Removal",
+    "treatment": "High-Fluence In-Motion Diode Laser",
+    "desc": "Smooth, even reduction in coarse body hair with integrated sapphire cooling technology.",
+    "beforeImg": "https://allodermis.com/cdn/shop/files/image1_807e69a0-1d98-4be2-910a-eefff91f87a8.webp?v=1769147205&width=480",
+    "afterImg": "https://allodermis.com/cdn/shop/files/image2_0a28895d-8774-48d6-b7eb-8b9f34c38af0.webp?v=1769147206&width=480"
+  },
+  {
+    "id": "unwanted-moles",
+    "title": "Unwanted Mole Removal",
+    "category": "Dermat Surgery",
+    "treatment": "Radiofrequency Ablation Excision",
+    "desc": "Precision dermatological mole excision leaving minimal scarring and rapid tissue epithelization.",
+    "beforeImg": "https://allodermis.com/cdn/shop/files/image2_9cfabdd6-efde-4f0c-ae80-bdf6d4f44acc.webp?v=1769156379&width=480",
+    "afterImg": "https://allodermis.com/cdn/shop/files/image4_ab8cb5b0-b337-44e7-9c90-5f79c31d7131.webp?v=1769156378&width=480"
+  },
+  {
+    "id": "skin-texture",
+    "title": "Skin Texture & Melasma Tone",
+    "category": "Dermat Surgery",
+    "treatment": "Medical Cosmelan Peel Protocol",
+    "desc": "Dramatic fading of stubborn epidermal pigmentation and restoration of luminous, uniform tone.",
+    "beforeImg": "https://allodermis.com/cdn/shop/files/image1_d7afe0b8-035f-4f53-a89e-e69307f2cd29.png?v=1769156324&width=480",
+    "afterImg": "https://allodermis.com/cdn/shop/files/image12_cb60c49e-c2be-43f6-b551-8389a77560cd.png?v=1769156324&width=480"
+  },
+  {
+    "id": "pale-uneven-lips",
+    "title": "Pale & Uneven Lip Tone",
+    "category": "Permanent Makeup",
+    "treatment": "Medical Lip Micropigmentation & Blush",
+    "desc": "Natural pigment enhancement restoring vibrant coral tint and healthy lip border definition.",
+    "beforeImg": "https://allodermis.com/cdn/shop/files/image12_d038667b-9616-4967-85d1-9c0e35063d1e.png?v=1769155522&width=480",
+    "afterImg": "https://allodermis.com/cdn/shop/files/image1.png?v=1769155523&width=480"
+  },
+  {
+    "id": "hair-loss-thinning",
+    "title": "Hair Loss & Scalp Thinning",
+    "category": "Permanent Makeup",
+    "treatment": "Scalp Micropigmentation & GFC Therapy",
+    "desc": "Enhanced optical hair density and scalp coverage with physician-formulated regenerative protocol.",
+    "beforeImg": "https://allodermis.com/cdn/shop/files/image4_637ff951-e283-4bec-853f-970a19816e84.webp?v=1769155703&width=480",
+    "afterImg": "https://allodermis.com/cdn/shop/files/image3_015d60c0-a99e-4b5f-9a29-29735a43e36c.webp?v=1769155704&width=480"
+  }
+]

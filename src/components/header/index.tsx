@@ -2,8 +2,10 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useCart } from '@/context/CartContext';
+import { useAuth } from '@/context/AuthContext';
 import { 
   ShoppingBag, 
   Heart, 
@@ -12,21 +14,85 @@ import {
   X, 
   ChevronDown, 
   Sparkles, 
-  Calendar,
   Phone,
   ShieldCheck,
-  Stethoscope,
-  ArrowRight
+  ArrowRight,
+  User as UserIcon,
+  LogOut,
+  ChevronRight,
+  Clock,
+  MapPin,
+  Star
 } from 'lucide-react';
+import treatmentsMegamenuData from '@/data/treatments_megamenu.json';
+import categoriesData from '@/data/categories.json';
+import { getFeaturedProducts } from '@/lib/products';
+
+interface TreatmentItem {
+  title: string;
+  href: string;
+  img: string;
+}
+
+interface TreatmentCategory {
+  id: string;
+  category: string;
+  items: TreatmentItem[];
+}
 
 const Header = () => {
   const pathname = usePathname();
   const { cartCount, setIsOpen: openCartDrawer, wishlist } = useCart();
+  const { user, isAuthenticated, logout, openAuthModal } = useAuth();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mobileTreatmentsOpen, setMobileTreatmentsOpen] = useState(false);
+  const [mobileShopOpen, setMobileShopOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [userDropdownOpen, setUserDropdownOpen] = useState(false);
+
+  // Active Category inside the Treatments Megamenu
+  const treatmentCategories = treatmentsMegamenuData as TreatmentCategory[];
+  const [selectedTreatmentCat, setSelectedTreatmentCat] = useState<string>(
+    treatmentCategories[0]?.id || 'laserhair'
+  );
+
+  const featuredSearchProducts = getFeaturedProducts(4);
+
+  // Prevent background scrolling when megamenu, mobile menu, or search modal is open
+  useEffect(() => {
+    if (activeDropdown || mobileMenuOpen || searchOpen) {
+      const originalOverflow = document.body.style.overflow;
+      const originalPaddingRight = document.body.style.paddingRight;
+      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+
+      document.body.style.overflow = 'hidden';
+      if (scrollbarWidth > 0) {
+        document.body.style.paddingRight = `${scrollbarWidth}px`;
+      }
+
+      return () => {
+        document.body.style.overflow = originalOverflow;
+        document.body.style.paddingRight = originalPaddingRight;
+      };
+    }
+  }, [activeDropdown, mobileMenuOpen, searchOpen]);
+
+  // Close menus on Escape key
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setActiveDropdown(null);
+        setSearchOpen(false);
+        setUserDropdownOpen(false);
+        setMobileMenuOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -41,214 +107,297 @@ const Header = () => {
     setMobileMenuOpen(false);
     setActiveDropdown(null);
     setSearchOpen(false);
+    setUserDropdownOpen(false);
   }, [pathname]);
 
-  const treatmentsMenu = [
-    { title: 'Acne & Pimple Treatment', desc: 'Medical-grade protocols for active breakouts', href: '/pages/acne-pimple' },
-    { title: 'Acne Scar Revision (MNRF)', desc: 'Dermal remodeling & subcision technology', href: '/pages/acne-scar-treatment' },
-    { title: 'Laser Hair Reduction', desc: 'US-FDA approved painless triple diode lasers', href: '/pages/laser-hair-reduction' },
-    { title: 'Clinical Chemical Peels', desc: 'Dermatologist formulations for renewal', href: '/pages/chemical-peel' },
-    { title: 'Skin Pigmentation & Melasma', desc: 'Targeted epidermal & dermal melanin clearance', href: '/pages/skin-pigmentation' },
-    { title: 'Botox & Anti-Wrinkle', desc: 'Natural facial muscle relaxation', href: '/pages/botox' },
-    { title: 'Dermal Fillers & Contouring', desc: 'Hyaluronic acid structural enhancement', href: '/pages/dermal-fillers' },
-    { title: 'PDRN Salmon DNA Booster', desc: 'Deep cellular regeneration & glass radiance', href: '/pages/pdrn-skin-booster' },
-    { title: 'Profhilo Bioremodeling', desc: 'High-concentration bio-remodeling therapy', href: '/pages/profhilo' },
-    { title: 'HIFU Non-Surgical Lift', desc: 'Focused ultrasound collagen lifting', href: '/pages/hifu' },
-  ];
-
-  const shopCategories = [
-    { title: 'All Skincare Products', href: '/collections/all' },
-    { title: 'Moisturizers & Barrier Repair', href: '/collections/all?type=Moisturizers' },
-    { title: 'Clinical Serums & Actives', href: '/collections/all?type=Serums' },
-    { title: 'Face Wash & Cleansers', href: '/collections/all?type=Face+Wash+%26+Cleansers' },
-    { title: 'Broad-Spectrum Sunscreens', href: '/collections/all?type=Sunscreen' },
-    { title: 'Scalp & Hair Care', href: '/collections/all?type=Scalp+Solution' },
-    { title: 'Anti-Ageing Formulations', href: '/collections/all?type=Anti-Ageing' },
-    { title: 'Clinical Supplements', href: '/collections/all?type=Supplements' },
-  ];
+  const activeCategoryData = treatmentCategories.find(c => c.id === selectedTreatmentCat) || treatmentCategories[0];
 
   return (
     <>
-      {/* Top Clinical Announcement Bar */}
-      <div className="bg-[#171717] text-[#EAE1D7] text-xs py-2 px-4 border-b border-[#2D2A28]">
-        <div className="max-w-[1440px] mx-auto flex items-center justify-between text-[11px] sm:text-xs">
-          <div className="flex items-center space-x-2">
-            <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-            <span className="font-medium tracking-wide">Board-Certified Dermatology Clinic & Medical Skincare Store</span>
-          </div>
-          <div className="hidden md:flex items-center space-x-6 text-[#D5CDC4]">
-            <span className="flex items-center gap-1.5">
-              <ShieldCheck className="w-3.5 h-3.5 text-[#EAE1D7]" /> 100% Genuine Dermatologist Formulations
-            </span>
-            <span className="text-[#8C8177]">|</span>
-            <span className="flex items-center gap-1.5">
-              <Phone className="w-3.5 h-3.5 text-[#EAE1D7]" /> KIIT Road, Patia, Bhubaneswar
-            </span>
-            <span className="text-[#8C8177]">|</span>
-            <Link href="/pages/contact" className="hover:text-white transition-colors underline underline-offset-2">
-              Book Appointment
-            </Link>
-          </div>
-        </div>
-      </div>
+      {/* Dimmed backdrop overlay when dropdown is open - prevents interacting with background and locks focus */}
+      {activeDropdown && (
+        <div 
+          className="fixed inset-0 bg-black/45 backdrop-blur-[2px] z-30 transition-opacity duration-200"
+          onClick={() => setActiveDropdown(null)}
+          aria-hidden="true"
+        />
+      )}
 
-      {/* Main Navigation Bar */}
-      <header
-        className={`sticky top-0 z-40 w-full transition-all duration-300 ${
-          isScrolled
-            ? 'bg-white/95 backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.04)] border-b border-subtle-border'
-            : 'bg-white border-b border-subtle-border/60'
-        }`}
-      >
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20">
-            {/* Logo */}
-            <div className="flex items-center">
-              <Link href="/" className="group flex flex-col">
-                <span className="font-serif text-2xl sm:text-3xl tracking-[0.06em] font-medium text-charcoal group-hover:text-black transition-colors uppercase">
-                  Allodermis
-                </span>
-                <span className="text-[9px] tracking-[0.24em] uppercase text-taupe font-sans -mt-0.5">
-                  Dermatology & Clinical Skincare
-                </span>
+      {/* Unified Sticky Header Wrapper - Fixed seamlessly at top with zero scroll jump */}
+      <div className="sticky top-0 z-40 w-full shadow-xs">
+        
+        {/* Top Clinical Announcement Bar with 30% Promotion */}
+        <div className="bg-[#171717] text-[#EAE1D7] text-xs py-2 px-4 border-b border-[#2D2A28]">
+          <div className="max-w-[1440px] mx-auto flex items-center justify-between text-xs">
+            <div className="flex items-center space-x-2">
+              <span className="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span className="font-semibold tracking-wide truncate">
+                Up to 30% Off on all Treatments • Board-Certified Dermatology Clinic & Skincare Store
+              </span>
+            </div>
+            <div className="hidden md:flex items-center space-x-5 text-[#D5CDC4] shrink-0">
+              <span className="flex items-center gap-1.5 font-medium whitespace-nowrap">
+                <ShieldCheck className="w-3.5 h-3.5 text-[#EAE1D7]" /> 100% Genuine Formulations
+              </span>
+              <span className="text-[#8C8177]">|</span>
+              <span className="flex items-center gap-1.5 font-medium whitespace-nowrap">
+                <Phone className="w-3.5 h-3.5 text-[#EAE1D7]" /> KIIT Road, Patia, Bhubaneswar
+              </span>
+              <span className="text-[#8C8177]">|</span>
+              <Link href="/pages/contact" className="hover:text-white transition-colors underline underline-offset-2 font-semibold whitespace-nowrap">
+                Book Appointment
               </Link>
             </div>
+          </div>
+        </div>
 
-            {/* Desktop Navigation Links */}
-            <nav className="hidden lg:flex items-center space-x-8 text-[14px] font-medium text-charcoal/90">
-              {/* Treatments Dropdown */}
-              <div 
-                className="relative"
-                onMouseEnter={() => setActiveDropdown('treatments')}
-                onMouseLeave={() => setActiveDropdown(null)}
-              >
-                <button 
-                  className={`flex items-center gap-1.5 py-6 hover:text-black transition-colors ${
-                    pathname.startsWith('/pages') && !pathname.includes('contact') && !pathname.includes('about')
-                      ? 'text-black font-semibold'
-                      : ''
-                  }`}
+        {/* Main Navigation Bar */}
+        <header
+          onMouseLeave={() => setActiveDropdown(null)}
+          className={`w-full transition-all duration-300 relative ${
+            isScrolled
+              ? 'bg-white/95 backdrop-blur-md shadow-[0_4px_25px_rgba(0,0,0,0.06)] border-b border-subtle-border'
+              : 'bg-white border-b border-subtle-border/70'
+          }`}
+        >
+          <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex items-center justify-between h-20 gap-3 xl:gap-8">
+              
+              {/* Logo */}
+              <div className="flex items-center shrink-0">
+                <Link 
+                  href="/" 
+                  onClick={() => setActiveDropdown(null)}
+                  className="group flex flex-col"
                 >
-                  Treatments
-                  <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${activeDropdown === 'treatments' ? 'rotate-180' : ''}`} />
-                </button>
-
-                {activeDropdown === 'treatments' && (
-                  <div className="absolute top-full left-1/2 -translate-x-1/2 w-[720px] bg-white border border-subtle-border rounded-xl shadow-2xl p-6 grid grid-cols-2 gap-4 animate-in fade-in slide-in-from-top-2 duration-200">
-                    <div className="col-span-2 pb-2 mb-2 border-b border-subtle-border flex justify-between items-center">
-                      <span className="text-xs uppercase tracking-wider font-semibold text-taupe">Physician-Led Clinical Procedures</span>
-                      <Link href="/pages/our-doctors" className="text-xs text-charcoal hover:underline flex items-center gap-1">
-                        Meet Our Dermatologists <ArrowRight className="w-3 h-3" />
-                      </Link>
-                    </div>
-                    {treatmentsMenu.map((item, idx) => (
-                      <Link
-                        key={idx}
-                        href={item.href}
-                        className="p-3 rounded-lg hover:bg-ivory transition-colors group flex flex-col"
-                      >
-                        <span className="font-medium text-sm text-charcoal group-hover:text-black">{item.title}</span>
-                        <span className="text-xs text-taupe mt-0.5">{item.desc}</span>
-                      </Link>
-                    ))}
-                  </div>
-                )}
+                  <span className="font-serif text-2xl sm:text-[30px] tracking-tight font-normal text-charcoal group-hover:text-black transition-colors whitespace-nowrap">
+                    Allodermis
+                  </span>
+                  <span className="text-[10px] sm:text-[11px] tracking-[0.25em] uppercase text-taupe font-sans -mt-0.5 whitespace-nowrap">
+                    Dermatology Clinic
+                  </span>
+                </Link>
               </div>
 
-              {/* Clinical Shop Dropdown */}
-              <div 
-                className="relative"
-                onMouseEnter={() => setActiveDropdown('shop')}
-                onMouseLeave={() => setActiveDropdown(null)}
-              >
-                <button 
-                  className={`flex items-center gap-1.5 py-6 hover:text-black transition-colors ${
-                    pathname.startsWith('/collections') || pathname.startsWith('/products') ? 'text-black font-semibold' : ''
-                  }`}
+              {/* Desktop Navigation Links */}
+              <nav className="hidden lg:flex items-center h-full space-x-3.5 xl:space-x-5 2xl:space-x-8 text-[13px] xl:text-[14px] 2xl:text-[15px] font-medium text-charcoal/90 shrink-0">
+                
+                {/* Why Us / About Link */}
+                <Link 
+                  href="/pages/about" 
+                  onMouseEnter={() => setActiveDropdown(null)}
+                  className={`h-20 flex items-center hover:text-black transition-colors whitespace-nowrap ${pathname === '/pages/about' ? 'text-black font-semibold' : ''}`}
                 >
-                  Clinical Shop
-                  <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${activeDropdown === 'shop' ? 'rotate-180' : ''}`} />
-                </button>
+                  Why Us
+                </Link>
 
-                {activeDropdown === 'shop' && (
-                  <div className="absolute top-full left-0 w-[480px] bg-white border border-subtle-border rounded-xl shadow-2xl p-6 grid grid-cols-2 gap-3 animate-in fade-in slide-in-from-top-2 duration-200">
-                    <div className="col-span-2 pb-2 mb-1 border-b border-subtle-border flex justify-between items-center">
-                      <span className="text-xs uppercase tracking-wider font-semibold text-taupe">Dermatologist-Approved Skincare</span>
-                      <Link href="/collections/all" className="text-xs text-charcoal hover:underline">
-                        View All (250+)
-                      </Link>
-                    </div>
-                    {shopCategories.map((cat, idx) => (
-                      <Link
-                        key={idx}
-                        href={cat.href}
-                        className="p-2.5 rounded-lg hover:bg-ivory transition-colors text-sm text-charcoal hover:text-black font-normal"
-                      >
-                        {cat.title}
-                      </Link>
-                    ))}
-                  </div>
-                )}
-              </div>
+                {/* Treatments Megamenu Trigger */}
+                <div 
+                  className="h-20 flex items-center"
+                  onMouseEnter={() => setActiveDropdown('treatments')}
+                >
+                  <button 
+                    onClick={() => setActiveDropdown(activeDropdown === 'treatments' ? null : 'treatments')}
+                    className={`flex items-center gap-1.5 h-full hover:text-black transition-colors cursor-pointer whitespace-nowrap ${
+                      pathname.startsWith('/pages') && !pathname.includes('contact') && !pathname.includes('about')
+                        ? 'text-black font-semibold'
+                        : ''
+                    }`}
+                  >
+                    Treatments
+                    <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${activeDropdown === 'treatments' ? 'rotate-180' : ''}`} />
+                  </button>
+                </div>
 
-              {/* Doctors */}
-              <Link 
-                href="/pages/our-doctors" 
-                className={`py-6 hover:text-black transition-colors ${pathname === '/pages/our-doctors' ? 'text-black font-semibold' : ''}`}
+                {/* Shop Skincare Dropdown Trigger */}
+                <div 
+                  className="h-20 flex items-center"
+                  onMouseEnter={() => setActiveDropdown('shop')}
+                >
+                  <button 
+                    onClick={() => setActiveDropdown(activeDropdown === 'shop' ? null : 'shop')}
+                    className={`flex items-center gap-1.5 h-full hover:text-black transition-colors cursor-pointer whitespace-nowrap ${
+                      pathname.startsWith('/collections') || pathname.startsWith('/products') ? 'text-black font-semibold' : ''
+                    }`}
+                  >
+                    Shop Skincare
+                    <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${activeDropdown === 'shop' ? 'rotate-180' : ''}`} />
+                  </button>
+                </div>
+
+                {/* Conditions */}
+                <Link 
+                  href="/pages/acne-pimple" 
+                  onMouseEnter={() => setActiveDropdown(null)}
+                  className={`h-20 flex items-center hover:text-black transition-colors whitespace-nowrap ${pathname === '/pages/acne-pimple' ? 'text-black font-semibold' : ''}`}
+                >
+                  Conditions
+                </Link>
+
+                {/* Doctors */}
+                <Link 
+                  href="/pages/our-doctors" 
+                  onMouseEnter={() => setActiveDropdown(null)}
+                  className={`h-20 flex items-center hover:text-black transition-colors whitespace-nowrap ${pathname === '/pages/our-doctors' ? 'text-black font-semibold' : ''}`}
+                >
+                  Doctors
+                </Link>
+
+                {/* Treatment Results */}
+                <Link 
+                  href="/pages/reviews" 
+                  onMouseEnter={() => setActiveDropdown(null)}
+                  className={`h-20 flex items-center hover:text-black transition-colors whitespace-nowrap ${pathname === '/pages/reviews' ? 'text-black font-semibold' : ''}`}
+                >
+                  Results
+                </Link>
+
+                {/* AI Skin Assessment */}
+                <Link 
+                  href="/pages/allodermis-ai-analysis" 
+                  onMouseEnter={() => setActiveDropdown(null)}
+                  className="h-20 flex items-center hover:text-black transition-colors gap-1.5 text-charcoal group whitespace-nowrap"
+                >
+                  <Sparkles className="w-4 h-4 text-amber-600 group-hover:scale-110 transition-transform" />
+                  <span className="font-semibold">AI Skin Check</span>
+                </Link>
+
+                {/* Contact */}
+                <Link 
+                  href="/pages/contact" 
+                  onMouseEnter={() => setActiveDropdown(null)}
+                  className={`h-20 flex items-center hover:text-black transition-colors whitespace-nowrap ${pathname === '/pages/contact' ? 'text-black font-semibold' : ''}`}
+                >
+                  Contact
+                </Link>
+
+              </nav>
+
+              {/* Right Action Icons & Primary CTA */}
+              <div 
+                className="flex items-center space-x-1 sm:space-x-2 shrink-0"
+                onMouseEnter={() => setActiveDropdown(null)}
               >
-                Doctors
-              </Link>
-
-              {/* AI Skin Assessment */}
-              <Link 
-                href="/pages/allodermis-ai-analysis" 
-                className="py-6 hover:text-black transition-colors flex items-center gap-1.5 text-charcoal group"
-              >
-                <Sparkles className="w-4 h-4 text-amber-600 group-hover:scale-110 transition-transform" />
-                <span>AI Skin Analysis</span>
-              </Link>
-
-              {/* About Clinic */}
-              <Link 
-                href="/pages/about" 
-                className={`py-6 hover:text-black transition-colors ${pathname === '/pages/about' ? 'text-black font-semibold' : ''}`}
-              >
-                About
-              </Link>
-
-              {/* Reviews */}
-              <Link 
-                href="/pages/reviews" 
-                className={`py-6 hover:text-black transition-colors ${pathname === '/pages/reviews' ? 'text-black font-semibold' : ''}`}
-              >
-                Reviews
-              </Link>
-
-              {/* Blog / Journal */}
-              <Link 
-                href="/blogs/skin-acacdemy" 
-                className={`py-6 hover:text-black transition-colors ${pathname.startsWith('/blogs') ? 'text-black font-semibold' : ''}`}
-              >
-                Journal
-              </Link>
-            </nav>
-
-            {/* Right Action Icons & Primary CTA */}
-            <div className="flex items-center space-x-3 sm:space-x-5">
+              
               {/* Search Toggle */}
               <button 
                 onClick={() => setSearchOpen(true)}
                 aria-label="Search treatments and skincare"
-                className="p-2 text-charcoal hover:text-black hover:bg-ivory rounded-full transition-colors"
+                title="Search"
+                className="p-2 text-charcoal hover:text-black hover:bg-ivory rounded-full transition-colors flex items-center justify-center cursor-pointer"
               >
                 <Search className="w-5 h-5" />
               </button>
+
+              {/* Account / User Menu Dropdown */}
+              <div 
+                className="relative"
+                onMouseLeave={() => setUserDropdownOpen(false)}
+              >
+                {isAuthenticated && user ? (
+                  <div className="relative">
+                    <button
+                      onClick={() => setUserDropdownOpen(!userDropdownOpen)}
+                      onMouseEnter={() => setUserDropdownOpen(true)}
+                      className="p-1 sm:p-1.5 rounded-full hover:bg-ivory transition-colors text-charcoal flex items-center justify-center"
+                      aria-label="User Account"
+                      title={`Account (${user.firstName})`}
+                    >
+                      <div className="w-8 h-8 rounded-full bg-[#171717] text-[#EAE1D7] flex items-center justify-center text-xs font-semibold ring-2 ring-ivory">
+                        {user.firstName[0]}
+                      </div>
+                    </button>
+
+                    {userDropdownOpen && (
+                      <div className="absolute right-0 top-full mt-2 w-60 bg-white border border-subtle-border rounded-2xl shadow-xl p-2 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
+                        <div className="px-3 py-2.5 border-b border-subtle-border">
+                          <p className="text-xs font-semibold text-charcoal truncate">
+                            {user.firstName} {user.lastName}
+                          </p>
+                          <p className="text-[11px] text-taupe truncate">{user.email}</p>
+                          <span className="inline-block mt-1 px-2 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider bg-emerald-50 text-emerald-800 border border-emerald-200">
+                            {user.memberTier}
+                          </span>
+                        </div>
+                        <div className="py-1">
+                          <Link
+                            href="/account"
+                            onClick={() => setUserDropdownOpen(false)}
+                            className="flex items-center gap-2.5 px-3 py-2 text-xs font-medium text-charcoal hover:bg-ivory rounded-xl transition-colors"
+                          >
+                            <UserIcon className="w-3.5 h-3.5 text-taupe" />
+                            Account Dashboard
+                          </Link>
+                          <Link
+                            href="/wishlist"
+                            onClick={() => setUserDropdownOpen(false)}
+                            className="flex items-center gap-2.5 px-3 py-2 text-xs font-medium text-charcoal hover:bg-ivory rounded-xl transition-colors"
+                          >
+                            <Heart className="w-3.5 h-3.5 text-taupe" />
+                            Saved Wishlist
+                          </Link>
+                        </div>
+                        <div className="pt-1 border-t border-subtle-border">
+                          <button
+                            onClick={() => {
+                              logout();
+                              setUserDropdownOpen(false);
+                            }}
+                            className="w-full flex items-center gap-2.5 px-3 py-2 text-xs font-medium text-rose-600 hover:bg-rose-50 rounded-xl transition-colors text-left"
+                          >
+                            <LogOut className="w-3.5 h-3.5" />
+                            Sign Out
+                          </button>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <div className="relative">
+                    <button
+                      onClick={() => openAuthModal('login')}
+                      onMouseEnter={() => setUserDropdownOpen(true)}
+                      className="p-2 text-charcoal hover:text-black hover:bg-ivory rounded-full transition-colors flex items-center justify-center cursor-pointer"
+                      aria-label="Account Login"
+                      title="Sign In / Register"
+                    >
+                      <UserIcon className="w-5 h-5" />
+                    </button>
+
+                    {userDropdownOpen && (
+                      <div className="absolute right-0 top-full mt-2 w-48 bg-white border border-subtle-border rounded-2xl shadow-xl p-3 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
+                        <div className="space-y-2">
+                          <button
+                            onClick={() => {
+                              setUserDropdownOpen(false);
+                              openAuthModal('login');
+                            }}
+                            className="w-full py-2 px-3 bg-[#171717] hover:bg-black text-white text-xs font-semibold uppercase tracking-wider rounded-xl transition-colors text-center cursor-pointer"
+                          >
+                            Sign In
+                          </button>
+                          <button
+                            onClick={() => {
+                              setUserDropdownOpen(false);
+                              openAuthModal('register');
+                            }}
+                            className="w-full py-2 px-3 bg-ivory hover:bg-beige text-charcoal border border-subtle-border text-xs font-semibold uppercase tracking-wider rounded-xl transition-colors text-center cursor-pointer"
+                          >
+                            Register
+                          </button>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
 
               {/* Wishlist */}
               <Link 
                 href="/wishlist" 
                 aria-label="View Wishlist"
-                className="relative p-2 text-charcoal hover:text-black hover:bg-ivory rounded-full transition-colors hidden sm:block"
+                title="Wishlist"
+                className="relative p-2 text-charcoal hover:text-black hover:bg-ivory rounded-full transition-colors hidden sm:flex items-center justify-center"
               >
                 <Heart className="w-5 h-5" />
                 {wishlist.length > 0 && (
@@ -262,7 +411,8 @@ const Header = () => {
               <button 
                 onClick={() => openCartDrawer(true)}
                 aria-label="Open Shopping Bag"
-                className="relative p-2 text-charcoal hover:text-black hover:bg-ivory rounded-full transition-colors"
+                title="Shopping Bag"
+                className="relative p-2 text-charcoal hover:text-black hover:bg-ivory rounded-full transition-colors flex items-center justify-center cursor-pointer"
               >
                 <ShoppingBag className="w-5 h-5" />
                 {cartCount > 0 && (
@@ -272,84 +422,318 @@ const Header = () => {
                 )}
               </button>
 
+              {/* Divider */}
+              <div className="hidden sm:block h-5 w-px bg-subtle-border mx-1"></div>
+
               {/* Primary Consultation CTA Button */}
               <Link
                 href="/pages/contact"
-                className="hidden sm:inline-flex items-center justify-center px-5 py-2.5 rounded-full text-xs tracking-wider uppercase font-semibold bg-[#171717] text-white hover:bg-black hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 shadow-sm"
+                className="hidden sm:inline-flex items-center justify-center px-5 py-2.5 rounded-full text-xs tracking-wider uppercase font-semibold bg-[#171717] text-white hover:bg-black hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 shadow-sm luxury-btn-shine whitespace-nowrap"
               >
-                Book Consultation
+                Book Appointment
               </Link>
 
               {/* Mobile Hamburger Menu Toggle */}
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="p-2 text-charcoal hover:text-black lg:hidden"
+                className="p-2 text-charcoal hover:text-black lg:hidden cursor-pointer"
                 aria-label="Toggle navigation menu"
               >
                 {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
               </button>
             </div>
+
           </div>
         </div>
 
-        {/* Mobile Navigation Drawer */}
-        {mobileMenuOpen && (
-          <div className="lg:hidden border-t border-subtle-border bg-white px-6 py-8 space-y-6 max-h-[80vh] overflow-y-auto animate-in slide-in-from-top duration-300">
-            <div className="space-y-4">
-              <Link
-                href="/pages/contact"
-                className="w-full flex items-center justify-center py-3 rounded-full text-xs tracking-wider uppercase font-semibold bg-[#171717] text-white"
-              >
-                Book Consultation
-              </Link>
-              <Link
-                href="/pages/allodermis-ai-analysis"
-                className="w-full flex items-center justify-center gap-2 py-2.5 rounded-full text-xs font-semibold bg-ivory text-charcoal border border-subtle-border"
-              >
-                <Sparkles className="w-4 h-4 text-amber-600" />
-                Start AI Skin Analysis
-              </Link>
-            </div>
-
-            <div className="pt-4 border-t border-subtle-border space-y-3">
-              <span className="text-xs uppercase tracking-wider text-taupe font-semibold block">Navigation</span>
-              <div className="flex flex-col space-y-3 text-base font-medium">
-                <Link href="/collections/all" className="hover:text-black py-1">Clinical Skincare Store (250+)</Link>
-                <Link href="/pages/our-doctors" className="hover:text-black py-1">Board-Certified Doctors</Link>
-                <Link href="/pages/acne-pimple" className="hover:text-black py-1">Acne & Breakout Care</Link>
-                <Link href="/pages/acne-scar-treatment" className="hover:text-black py-1">Acne Scar Revision (MNRF)</Link>
-                <Link href="/pages/laser-hair-reduction" className="hover:text-black py-1">Laser Hair Reduction</Link>
-                <Link href="/pages/skin-pigmentation" className="hover:text-black py-1">Pigmentation & Melasma</Link>
-                <Link href="/pages/pdrn-skin-booster" className="hover:text-black py-1">PDRN Skin Booster</Link>
-                <Link href="/pages/reviews" className="hover:text-black py-1">Patient Reviews & Results</Link>
-                <Link href="/pages/about" className="hover:text-black py-1">About Allodermis Clinic</Link>
-                <Link href="/blogs/skin-acacdemy" className="hover:text-black py-1">Dermatology Journal</Link>
-                <Link href="/wishlist" className="hover:text-black py-1">My Saved Wishlist</Link>
+        {/* Full-Width Visual Megamenu for Treatments - Docked directly to navbar bottom */}
+        {activeDropdown === 'treatments' && (
+          <div 
+            className="hidden lg:block absolute top-full left-0 right-0 w-full bg-white border-b border-subtle-border shadow-[0_30px_90px_rgba(0,0,0,0.20)] z-50 animate-in fade-in slide-in-from-top-1 duration-150"
+            onMouseEnter={() => setActiveDropdown('treatments')}
+            onMouseLeave={() => setActiveDropdown(null)}
+          >
+            <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-7">
+              {/* Header Strip */}
+              <div className="flex items-center justify-between pb-4 mb-5 border-b border-subtle-border">
+                <div className="flex items-center gap-3">
+                  <span className="text-xs uppercase tracking-[0.2em] font-bold text-amber-900 bg-amber-50 px-3.5 py-1.5 rounded-full border border-amber-200">
+                    CLINICAL PROCEDURES & LASER AESTHETICS
+                  </span>
+                  <span className="text-sm text-taupe hidden sm:inline">
+                    US-FDA Approved Energy Systems & AIIMS Specialists
+                  </span>
+                </div>
+                <Link 
+                  href="/pages/our-doctors" 
+                  onClick={() => setActiveDropdown(null)}
+                  className="text-xs sm:text-sm font-semibold text-charcoal hover:underline flex items-center gap-1.5"
+                >
+                  <span>Meet Our 8 Board-Certified Doctors</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
               </div>
-            </div>
 
-            <div className="pt-4 border-t border-subtle-border text-xs text-taupe space-y-1">
-              <p className="font-semibold text-charcoal">Allodermis Dermatology Clinic</p>
-              <p>KIIT Road, Patia, Bhubaneswar, Odisha 751024</p>
-              <p>Mon – Sat: 10:00 AM – 8:00 PM</p>
+              <div className="grid grid-cols-12 gap-7 min-h-[440px]">
+                {/* Left Column: Category Tabs (No grey scrollbar, spacious, elegant) */}
+                <div className="col-span-3 border-r border-subtle-border pr-4 space-y-1.5 max-h-[460px] overflow-y-auto no-scrollbar">
+                  {treatmentCategories.map((cat) => {
+                    const isSelected = cat.id === selectedTreatmentCat;
+                    return (
+                      <button
+                        key={cat.id}
+                        onMouseEnter={() => setSelectedTreatmentCat(cat.id)}
+                        onClick={() => setSelectedTreatmentCat(cat.id)}
+                        className={`w-full flex items-center justify-between px-4 py-3 rounded-xl text-left text-sm font-medium transition-all duration-200 cursor-pointer ${
+                          isSelected
+                            ? 'bg-[#171717] text-white font-semibold shadow-sm translate-x-1'
+                            : 'text-charcoal hover:bg-ivory hover:text-black'
+                        }`}
+                      >
+                        <span>{cat.category}</span>
+                        <ChevronRight className={`w-3.5 h-3.5 transition-transform ${isSelected ? 'text-white' : 'text-taupe'}`} />
+                      </button>
+                    );
+                  })}
+                </div>
+
+                {/* Right Column: Visual Treatment Cards Grid with Images */}
+                <div className="col-span-9 pl-2">
+                  <div className="flex items-center justify-between mb-4">
+                    <h4 className="font-serif text-2xl font-medium text-charcoal">
+                      {activeCategoryData.category}
+                    </h4>
+                    <span className="text-xs text-taupe font-medium">
+                      {activeCategoryData.items.length} Procedure{activeCategoryData.items.length > 1 ? 's' : ''} Available
+                    </span>
+                  </div>
+
+                  <div className="grid grid-cols-3 sm:grid-cols-4 gap-4 max-h-[420px] overflow-y-auto no-scrollbar pr-1">
+                    {activeCategoryData.items.map((item, idx) => (
+                      <Link
+                        key={idx}
+                        href={item.href}
+                        onClick={() => setActiveDropdown(null)}
+                        className="group flex flex-col bg-[#FDFBF9] hover:bg-white border border-subtle-border hover:border-[#D5CDC4] rounded-2xl p-3 hover:shadow-lg transition-all duration-300"
+                      >
+                        <div className="relative aspect-[16/11] w-full rounded-xl overflow-hidden bg-ivory mb-2.5">
+                          <Image
+                            src={item.img}
+                            alt={item.title}
+                            fill
+                            unoptimized
+                            className="object-cover group-hover:scale-108 transition-transform duration-500"
+                            sizes="240px"
+                          />
+                        </div>
+                        <span className="font-medium text-xs sm:text-sm text-charcoal group-hover:text-black leading-snug line-clamp-2">
+                          {item.title}
+                        </span>
+                        <span className="text-[11px] text-taupe group-hover:text-charcoal font-medium mt-1 flex items-center gap-1">
+                          View Procedure <ChevronRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
+                        </span>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         )}
-      </header>
 
-      {/* Search Modal */}
+        {/* Full-Width Visual Megamenu for Shop Skincare - Docked directly to navbar bottom */}
+        {activeDropdown === 'shop' && (
+          <div 
+            className="hidden lg:block absolute top-full left-0 right-0 w-full bg-white border-b border-subtle-border shadow-[0_30px_90px_rgba(0,0,0,0.20)] z-50 animate-in fade-in slide-in-from-top-1 duration-150"
+            onMouseEnter={() => setActiveDropdown('shop')}
+            onMouseLeave={() => setActiveDropdown(null)}
+          >
+            <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-7">
+              <div className="flex items-center justify-between pb-4 mb-5 border-b border-subtle-border">
+                <div className="flex items-center gap-3">
+                  <span className="text-xs uppercase tracking-[0.2em] font-bold text-amber-900 bg-amber-50 px-3.5 py-1.5 rounded-full border border-amber-200">
+                    CLINICAL SKINCARE STORE
+                  </span>
+                  <span className="text-sm text-taupe hidden sm:inline">
+                    Authentic Physician-Curated Formulations (250+ Products)
+                  </span>
+                </div>
+                <Link 
+                  href="/collections/all" 
+                  onClick={() => setActiveDropdown(null)}
+                  className="text-xs sm:text-sm font-semibold text-charcoal hover:underline flex items-center gap-1.5"
+                >
+                  <span>Shop All Products</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
+              </div>
+
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3.5 max-h-[440px] overflow-y-auto no-scrollbar pr-1">
+                {categoriesData.map((cat, idx) => (
+                  <Link
+                    key={idx}
+                    href={cat.href.startsWith('http') ? cat.href : '/collections/all'}
+                    onClick={() => setActiveDropdown(null)}
+                    className="flex items-center gap-3 p-3 rounded-2xl bg-[#FDFBF9] hover:bg-white border border-subtle-border hover:border-[#D5CDC4] hover:shadow-md transition-all group"
+                  >
+                    <div className="relative w-12 h-12 rounded-full overflow-hidden bg-white border border-subtle-border flex-shrink-0">
+                      <Image
+                        src={cat.img}
+                        alt={cat.name}
+                        fill
+                        unoptimized
+                        className="object-contain p-1.5 group-hover:scale-110 transition-transform duration-300"
+                        sizes="48px"
+                      />
+                    </div>
+                    <div className="truncate">
+                      <span className="text-xs sm:text-sm font-semibold text-charcoal group-hover:text-black block truncate">
+                        {cat.name}
+                      </span>
+                      <span className="text-[11px] text-taupe block">
+                        Explore Formulations
+                      </span>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Mobile Navigation Drawer with Visual Submenus */}
+        {mobileMenuOpen && (
+          <div className="lg:hidden border-t border-subtle-border bg-white px-6 py-8 space-y-6 max-h-[85vh] overflow-y-auto animate-in slide-in-from-top duration-300">
+            
+            {/* Quick Consultation CTA */}
+            <div className="space-y-3">
+              <Link
+                href="/pages/contact"
+                onClick={() => setMobileMenuOpen(false)}
+                className="w-full flex items-center justify-center py-3.5 rounded-full text-xs tracking-wider uppercase font-semibold bg-[#171717] text-white"
+              >
+                Book In-Clinic Consultation
+              </Link>
+              <Link
+                href="/pages/allodermis-ai-analysis"
+                onClick={() => setMobileMenuOpen(false)}
+                className="w-full flex items-center justify-center gap-2 py-3 rounded-full text-xs font-semibold bg-ivory text-charcoal border border-subtle-border"
+              >
+                <Sparkles className="w-4 h-4 text-amber-600" />
+                Free AI Skin Check
+              </Link>
+            </div>
+
+            {/* Mobile Accordion for Treatments with Real Images */}
+            <div className="pt-2 border-t border-subtle-border">
+              <button
+                onClick={() => setMobileTreatmentsOpen(!mobileTreatmentsOpen)}
+                className="w-full flex items-center justify-between py-2.5 text-base font-semibold text-charcoal"
+              >
+                <span>Clinical Treatments</span>
+                <ChevronDown className={`w-4 h-4 transition-transform ${mobileTreatmentsOpen ? 'rotate-180' : ''}`} />
+              </button>
+
+              {mobileTreatmentsOpen && (
+                <div className="pt-3 pb-2 space-y-4 max-h-[360px] overflow-y-auto pl-2">
+                  {treatmentCategories.map((cat) => (
+                    <div key={cat.id} className="space-y-2">
+                      <span className="text-xs uppercase tracking-wider font-bold text-amber-900 block">
+                        {cat.category}
+                      </span>
+                      <div className="grid grid-cols-2 gap-2">
+                        {cat.items.slice(0, 4).map((item, idx) => (
+                          <Link
+                            key={idx}
+                            href={item.href}
+                            onClick={() => setMobileMenuOpen(false)}
+                            className="flex items-center gap-2 p-2 rounded-xl bg-ivory/60 border border-subtle-border text-xs"
+                          >
+                            <div className="relative w-8 h-8 rounded-lg overflow-hidden flex-shrink-0">
+                              <Image src={item.img} alt={item.title} fill className="object-cover" sizes="32px" />
+                            </div>
+                            <span className="font-medium text-charcoal truncate">{item.title}</span>
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Mobile Accordion for Shop Skincare with Images */}
+            <div className="pt-2 border-t border-subtle-border">
+              <button
+                onClick={() => setMobileShopOpen(!mobileShopOpen)}
+                className="w-full flex items-center justify-between py-2.5 text-base font-semibold text-charcoal"
+              >
+                <span>Shop Skincare by Category</span>
+                <ChevronDown className={`w-4 h-4 transition-transform ${mobileShopOpen ? 'rotate-180' : ''}`} />
+              </button>
+
+              {mobileShopOpen && (
+                <div className="grid grid-cols-2 gap-2.5 pt-3 pb-2">
+                  {categoriesData.map((cat, idx) => (
+                    <Link
+                      key={idx}
+                      href={cat.href.startsWith('http') ? cat.href : '/collections/all'}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="flex items-center gap-2 p-2.5 rounded-xl bg-ivory/60 border border-subtle-border"
+                    >
+                      <div className="relative w-8 h-8 rounded-full overflow-hidden bg-white flex-shrink-0">
+                        <Image src={cat.img} alt={cat.name} fill className="object-contain p-1" sizes="32px" />
+                      </div>
+                      <span className="text-xs font-medium text-charcoal truncate">{cat.name}</span>
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* General Navigation Links */}
+            <div className="pt-2 border-t border-subtle-border space-y-2.5 text-base font-medium">
+              <Link href="/pages/our-doctors" onClick={() => setMobileMenuOpen(false)} className="block py-1 hover:text-black">
+                Our 8 Board-Certified Doctors
+              </Link>
+              <Link href="/pages/reviews" onClick={() => setMobileMenuOpen(false)} className="block py-1 hover:text-black">
+                Real Treatment Results & Reviews
+              </Link>
+              <Link href="/pages/about" onClick={() => setMobileMenuOpen(false)} className="block py-1 hover:text-black">
+                About Allodermis Clinic
+              </Link>
+              <Link href="/pages/contact" onClick={() => setMobileMenuOpen(false)} className="block py-1 hover:text-black">
+                Clinic Location & Contact
+              </Link>
+            </div>
+
+          </div>
+        )}
+      </header>
+      </div>
+
+      {/* Visual Search Modal with Live Product Cards & Images (Matching Allodermis search dropdown) */}
       {searchOpen && (
-        <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-start justify-center pt-24 px-4 animate-in fade-in duration-200">
-          <div className="bg-white rounded-2xl w-full max-w-2xl p-6 shadow-2xl border border-subtle-border space-y-4">
+        <div 
+          className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-start justify-center pt-20 px-4 animate-in fade-in duration-200"
+          onClick={() => setSearchOpen(false)}
+        >
+          <div 
+            className="bg-white rounded-3xl w-full max-w-4xl p-6 sm:p-8 shadow-2xl border border-subtle-border space-y-6"
+            onClick={(e) => e.stopPropagation()}
+          >
             <div className="flex items-center justify-between pb-3 border-b border-subtle-border">
-              <span className="text-xs font-semibold uppercase tracking-wider text-taupe">Search Treatments & Skincare</span>
+              <span className="text-xs font-bold uppercase tracking-wider text-taupe">
+                Search Products & Clinical Treatments
+              </span>
               <button 
                 onClick={() => setSearchOpen(false)}
-                className="p-1 hover:bg-ivory rounded-full text-charcoal"
+                className="p-1.5 hover:bg-ivory rounded-full text-charcoal cursor-pointer"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
+
             <form 
               onSubmit={(e) => {
                 e.preventDefault();
@@ -359,32 +743,77 @@ const Header = () => {
               }}
               className="relative"
             >
-              <Search className="w-5 h-5 absolute left-3 top-1/2 -translate-y-1/2 text-taupe" />
+              <Search className="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2 text-taupe" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search products (e.g. Retinol, Sunscreen, Acne, Morr Max)..."
+                placeholder="What are you looking for? (e.g. Aclaris, Photon, Sebamed, Retinol)..."
                 autoFocus
-                className="w-full pl-11 pr-4 py-3.5 bg-ivory rounded-xl text-base text-charcoal placeholder:text-taupe focus:outline-none focus:ring-2 focus:ring-charcoal"
+                className="w-full pl-12 pr-4 py-4 bg-[#FAF8F5] rounded-2xl text-base text-charcoal placeholder:text-taupe focus:bg-white focus:outline-none focus:ring-2 focus:ring-charcoal border border-subtle-border transition-all"
               />
             </form>
-            <div className="pt-2">
-              <span className="text-xs text-taupe font-medium">Quick Suggestions:</span>
-              <div className="flex flex-wrap gap-2 mt-2">
-                {['Sunscreen', 'Acne Scar', 'Moisturizer', 'Salicylic Acid', 'Hair Fall', 'Chemical Peel', 'PDRN'].map((tag, i) => (
+
+            {/* Most Searched Products with Real Images */}
+            <div className="space-y-3 pt-1">
+              <span className="text-xs font-bold uppercase tracking-wider text-charcoal block">
+                Most Searched Products
+              </span>
+              
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                {featuredSearchProducts.map((p) => {
+                  const pImg = p.images?.[0]?.src || p.image?.src || '';
+                  const pPrice = p.variants?.[0]?.price || '0';
+                  return (
+                    <Link
+                      key={p.id}
+                      href={`/products/${p.handle}`}
+                      onClick={() => setSearchOpen(false)}
+                      className="group flex flex-col p-3 rounded-2xl bg-[#FDFBF9] hover:bg-white border border-subtle-border hover:shadow-md transition-all"
+                    >
+                      <div className="relative aspect-square w-full rounded-xl overflow-hidden bg-white mb-2">
+                        {pImg && (
+                          <Image
+                            src={pImg}
+                            alt={p.title}
+                            fill
+                            className="object-contain p-2 group-hover:scale-105 transition-transform"
+                            sizes="160px"
+                          />
+                        )}
+                      </div>
+                      <span className="font-medium text-xs sm:text-sm text-charcoal group-hover:text-black line-clamp-2 leading-snug">
+                        {p.title}
+                      </span>
+                      <span className="text-xs font-bold text-charcoal mt-1">
+                        Rs. {parseFloat(pPrice).toFixed(2)}
+                      </span>
+                    </Link>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Most Searched Keywords */}
+            <div className="pt-2 border-t border-subtle-border">
+              <span className="text-xs text-taupe font-semibold block mb-2">
+                Most searched keywords:
+              </span>
+              <div className="flex flex-wrap gap-2">
+                {['Skincare', 'Sunscreen', 'Acne Scar', 'Moisturizers', 'Pigmentation', 'Chemical Peel', 'PDRN', 'Body Care', 'Hair Care'].map((tag, i) => (
                   <button
                     key={i}
                     onClick={() => {
                       window.location.href = `/collections/all?q=${encodeURIComponent(tag)}`;
                     }}
-                    className="text-xs px-3 py-1.5 rounded-full bg-ivory hover:bg-beige text-charcoal transition-colors"
+                    className="text-xs px-3.5 py-1.5 rounded-full bg-[#FAF8F5] hover:bg-[#171717] hover:text-white text-charcoal border border-subtle-border transition-colors cursor-pointer"
                   >
                     {tag}
                   </button>
                 ))}
               </div>
             </div>
+
           </div>
         </div>
       )}

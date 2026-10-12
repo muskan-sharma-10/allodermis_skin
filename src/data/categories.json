@@ -1,0 +1,57 @@
+[
+  {
+    "name": "Dermat Consultation",
+    "href": "https://skin-analysis.allodermis.com/book/",
+    "img": "https://allodermis.com/cdn/shop/files/medical-staff-isometric-vector-illustration-doctor-patient-concept-consultation-diagnosis-healthcare-flat-141320760.webp?v=1790148182&width=400"
+  },
+  {
+    "name": "Dandruff Kit",
+    "href": "https://allodermis.com/pages/dandruff-care",
+    "img": "https://allodermis.com/cdn/shop/files/RITUAL-COMBO-750X750-JPG-4.webp?v=1790148266&width=400"
+  },
+  {
+    "name": "Acne Kit",
+    "href": "#",
+    "img": "https://allodermis.com/cdn/shop/files/salicylic-acid-acne-control-kit-4394666.webp?v=1790148376&width=400"
+  },
+  {
+    "name": "Sunscreen",
+    "href": "/collections/all/sunscreen",
+    "img": "https://allodermis.com/cdn/shop/files/51lt85KW68L._SL1000.webp?v=1770448745&width=400"
+  },
+  {
+    "name": "Cleanser",
+    "href": "#",
+    "img": "https://allodermis.com/cdn/shop/files/cetaphil-gentle-skin-cleanser-1.jpg?v=1788694492&width=400"
+  },
+  {
+    "name": "Moisturizers",
+    "href": "/collections/all/moisturizers",
+    "img": "https://allodermis.com/cdn/shop/files/s-cl-bestseller.webp?v=1751734872&width=400"
+  },
+  {
+    "name": "Serums",
+    "href": "/collections/all/serums",
+    "img": "https://allodermis.com/cdn/shop/files/s-cl-skincare.webp?v=1751734872&width=400"
+  },
+  {
+    "name": "Face Wash & Cleansers",
+    "href": "/collections/all/face-wash-cleansers",
+    "img": "https://allodermis.com/cdn/shop/files/s-cl-new-arrivals.webp?v=1751734872&width=400"
+  },
+  {
+    "name": "Supplements",
+    "href": "/collections/all/supplements",
+    "img": "https://allodermis.com/cdn/shop/files/s-cl-brands.webp?v=1751734872&width=400"
+  },
+  {
+    "name": "Anti-Ageing",
+    "href": "/collections/all/anti-ageing-wrinkles",
+    "img": "https://allodermis.com/cdn/shop/files/s-cl-hair.webp?v=1751734872&width=400"
+  },
+  {
+    "name": "Pigmentation",
+    "href": "/collections/all/pigmentation-dark-spots",
+    "img": "https://allodermis.com/cdn/shop/files/s-cl-body.webp?v=1751734872&width=400"
+  }
+]

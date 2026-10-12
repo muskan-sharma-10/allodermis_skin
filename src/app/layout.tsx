@@ -1,24 +1,12 @@
 import type { Metadata, Viewport } from "next";
-import { Cormorant_Garamond, Plus_Jakarta_Sans } from "next/font/google";
 import "../style/globals.css";
 import { CartProvider } from "@/context/CartContext";
+import { AuthProvider } from "@/context/AuthContext";
 import CartDrawer from "@/components/cart/CartDrawer";
+import AuthModal from "@/components/auth/AuthModal";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
-
-const cormorant = Cormorant_Garamond({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-serif",
-  display: "swap",
-});
-
-const jakarta = Plus_Jakarta_Sans({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-sans",
-  display: "swap",
-});
+import CustomCursor from "@/components/ui/CustomCursor";
 
 export const metadata: Metadata = {
   title: {
@@ -51,7 +39,7 @@ export const metadata: Metadata = {
       "Transform your skin with physician-formulated medical solutions, advanced laser aesthetics, and board-certified dermatologists.",
     images: [
       {
-        url: "https://allodermis.com/cdn/shop/files/Allodermis_Transparent_bg_1.png?v=1750877830&width=1200",
+        url: "/images/hero-banner-consultation.jpg",
         width: 1200,
         height: 630,
         alt: "Allodermis Dermatology",
@@ -59,7 +47,13 @@ export const metadata: Metadata = {
     ],
   },
   icons: {
-    icon: "/favicon.ico",
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/favicon.png", type: "image/png" }
+    ],
+    apple: [
+      { url: "/favicon.png" }
+    ]
   },
 };
 
@@ -75,14 +69,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${cormorant.variable} ${jakarta.variable}`}>
+    <html lang="en">
       <body className="min-h-screen flex flex-col bg-white text-charcoal font-sans antialiased selection:bg-[#EAE1D7] selection:text-charcoal">
-        <CartProvider>
-          <Header />
-          <main className="flex-1 w-full">{children}</main>
-          <Footer />
-          <CartDrawer />
-        </CartProvider>
+        <AuthProvider>
+          <CartProvider>
+            <CustomCursor />
+            <Header />
+            <main className="flex-1 w-full">{children}</main>
+            <Footer />
+            <CartDrawer />
+            <AuthModal />
+          </CartProvider>
+        </AuthProvider>
       </body>
     </html>
   );

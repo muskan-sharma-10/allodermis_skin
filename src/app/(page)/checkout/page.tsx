@@ -1,9 +1,10 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useCart } from '@/context/CartContext';
+import { useAuth } from '@/context/AuthContext';
 import { 
   ShieldCheck, 
   CheckCircle2, 
@@ -11,13 +12,16 @@ import {
   CreditCard, 
   Lock, 
   ArrowRight,
-  ShoppingBag
+  ShoppingBag,
+  User as UserIcon,
+  Sparkles
 } from 'lucide-react';
 
 const FREE_SHIPPING_THRESHOLD = 999;
 
 export default function CheckoutPage() {
   const { cart, subtotal, clearCart } = useCart();
+  const { user, isAuthenticated, openAuthModal, addOrder } = useAuth();
   const [placed, setPlaced] = useState(false);
   const [orderId, setOrderId] = useState('');
   const [paymentMethod, setPaymentMethod] = useState<'upi' | 'card' | 'cod'>('upi');
@@ -34,13 +38,46 @@ export default function CheckoutPage() {
     pincode: '751024',
   });
 
+  // Auto-fill from user profile when logged in
+  useEffect(() => {
+    if (user) {
+      const defaultAddr = user.addresses.find((a) => a.isDefault) || user.addresses[0];
+      setForm((prev) => ({
+        ...prev,
+        firstName: user.firstName || prev.firstName,
+        lastName: user.lastName || prev.lastName,
+        email: user.email || prev.email,
+        phone: user.phone || prev.phone,
+        address: defaultAddr?.street || prev.address,
+        apartment: defaultAddr?.apartment || prev.apartment,
+        city: defaultAddr?.city || prev.city,
+        state: defaultAddr?.state || prev.state,
+        pincode: defaultAddr?.pincode || prev.pincode,
+      }));
+    }
+  }, [user]);
+
   const shippingFee = subtotal >= FREE_SHIPPING_THRESHOLD ? 0 : 99;
   const totalAmount = subtotal + shippingFee;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const id = `AD-${Math.floor(100000 + Math.random() * 900000)}`;
-    setOrderId(id);
+    const itemsFormatted = cart.map((c) => ({
+      id: c.product.id,
+      title: c.product.title,
+      price: c.variant.price,
+      quantity: c.quantity,
+      image: c.product.images?.[0]?.src,
+    }));
+
+    const newId = addOrder({
+      total: totalAmount,
+      items: itemsFormatted,
+      shippingAddress: `${form.address}, ${form.city}, ${form.state} ${form.pincode}`,
+      paymentMethod: paymentMethod === 'upi' ? 'UPI (Google Pay / PhonePe)' : paymentMethod === 'card' ? 'Debit/Credit Card' : 'Cash on Delivery',
+    });
+
+    setOrderId(newId);
     setPlaced(true);
     clearCart();
   };
@@ -91,10 +128,16 @@ export default function CheckoutPage() {
               Your prescription formulations are being prepared by Allodermis Clinical Dispensary under sterile guidelines. You will receive dispatch updates on WhatsApp and SMS.
             </p>
 
-            <div className="pt-2">
+            <div className="pt-2 flex items-center justify-center gap-3 flex-wrap">
+              <Link
+                href="/account"
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-[#171717] text-white hover:bg-black transition-colors shadow-sm"
+              >
+                View in Account Dashboard
+              </Link>
               <Link
                 href="/"
-                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-[#171717] text-white hover:bg-black transition-colors"
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-ivory text-charcoal border border-subtle-border hover:bg-beige transition-colors"
               >
                 Return to Home
               </Link>
@@ -130,6 +173,44 @@ export default function CheckoutPage() {
                 Patient & Delivery Details
               </h1>
             </div>
+
+            {/* Account Status / Sign In Prompt */}
+            {isAuthenticated && user ? (
+              <div className="p-4 rounded-2xl bg-emerald-50/70 border border-emerald-200/80 flex items-center justify-between text-xs">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-7 h-7 rounded-full bg-emerald-800 text-white flex items-center justify-center font-semibold text-[11px]">
+                    {user.firstName[0]}
+                  </div>
+                  <div>
+                    <span className="font-semibold text-charcoal">
+                      Logged in as {user.firstName} {user.lastName}
+                    </span>
+                    <span className="text-[11px] text-emerald-800 block">
+                      Saved address loaded • Order will sync to your account
+                    </span>
+                  </div>
+                </div>
+                <Link href="/account" className="text-xs text-charcoal underline font-medium hover:text-black">
+                  View Account
+                </Link>
+              </div>
+            ) : (
+              <div className="p-4 rounded-2xl bg-ivory border border-subtle-border flex items-center justify-between text-xs">
+                <div className="flex items-center gap-2.5">
+                  <UserIcon className="w-4 h-4 text-taupe" />
+                  <span className="text-charcoal font-medium">
+                    Have an Allodermis account? Sign in for saved addresses & points.
+                  </span>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => openAuthModal('login')}
+                  className="px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-[#171717] text-white hover:bg-black transition-colors"
+                >
+                  Sign In
+                </button>
+              </div>
+            )}
 
             <form onSubmit={handleSubmit} className="space-y-8">
               

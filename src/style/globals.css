@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -66,13 +68,93 @@
   font-weight: 600;
 }
 
+/* Custom cursor handling for fine pointer devices */
+@media (pointer: fine) {
+  body, a, button, [role="button"], summary {
+    cursor: none !important;
+  }
+  input, textarea, select {
+    cursor: text !important;
+  }
+}
+
 /* Clean luxury card hover transitions */
 .luxury-card {
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .luxury-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.06);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.07);
+}
+
+/* Luxury Keyframe Animations */
+@keyframes luxuryFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes luxuryGlowPulse {
+  0%, 100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes gentleDrift {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-4px) rotate(0.8deg);
+  }
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+}
+
+.animate-luxury-float {
+  animation: luxuryFloat 4.5s ease-in-out infinite;
+}
+
+.animate-luxury-glow {
+  animation: luxuryGlowPulse 3.5s ease-in-out infinite;
+}
+
+.animate-gentle-drift {
+  animation: gentleDrift 5s ease-in-out infinite;
+}
+
+/* Luxury button shine sheen effect */
+.luxury-btn-shine {
+  position: relative;
+  overflow: hidden;
+}
+.luxury-btn-shine::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    60deg,
+    transparent,
+    rgba(255, 255, 255, 0.22),
+    transparent
+  );
+  transform: translateX(-100%) rotate(25deg);
+  transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.luxury-btn-shine:hover::after {
+  transform: translateX(100%) rotate(25deg);
 }
 
 /* Hide scrollbar for clean filter tabs */

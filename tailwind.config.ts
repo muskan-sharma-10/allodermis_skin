@@ -68,8 +68,8 @@ const config = {
         full: "9999px",
       },
       fontFamily: {
-        serif: ["var(--font-serif)", "Cormorant Garamond", "Playfair Display", "Georgia", "serif"],
-        sans: ["var(--font-sans)", "Plus Jakarta Sans", "Inter", "system-ui", "sans-serif"],
+        serif: ["'Playfair Display'", "'Cormorant Garamond'", "Georgia", "serif"],
+        sans: ["'Plus Jakarta Sans'", "Inter", "system-ui", "sans-serif"],
       },
       keyframes: {
         "accordion-down": {
