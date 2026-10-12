@@ -39,7 +39,7 @@ export const metadata: Metadata = {
       "Transform your skin with physician-formulated medical solutions, advanced laser aesthetics, and board-certified dermatologists.",
     images: [
       {
-        url: "/images/hero-banner-consultation.jpg",
+        url: "/images/hero-banner-doctors.jpg",
         width: 1200,
         height: 630,
         alt: "Allodermis Dermatology",

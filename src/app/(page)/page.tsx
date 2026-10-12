@@ -102,20 +102,20 @@ export default function HomePage() {
           ========================================================================= */}
       <section className="relative w-full min-h-[88vh] lg:min-h-[92vh] flex items-center overflow-hidden border-b border-subtle-border">
         
-        {/* Full-Bleed Doctor Consultation Clinic Background Image */}
+        {/* Full-Bleed Doctor Team & Clinic Hero Banner Image */}
         <div className="absolute inset-0 w-full h-full z-0">
           <Image
-            src="/images/hero-banner-consultation.jpg"
-            alt="Allodermis Dermatology Consultation Room"
+            src="/images/hero-banner-doctors.jpg"
+            alt="Allodermis Board-Certified Dermatologists Team & Clinical Skincare"
             fill
             priority
             quality={95}
-            className="object-cover object-right md:object-center"
+            className="object-cover object-right"
             sizes="100vw"
           />
 
-          {/* Seamless Soft Gradient Overlay on Left */}
-          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/95 sm:via-white/85 md:via-white/75 lg:via-white/65 to-transparent" />
+          {/* Seamless Soft Gradient Overlay on Left for Editorial Text Legibility */}
+          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/95 sm:via-white/85 md:via-white/70 lg:via-white/40 to-transparent" />
           <div className="absolute bottom-0 inset-x-0 h-32 bg-gradient-to-t from-white via-white/50 to-transparent" />
         </div>
 

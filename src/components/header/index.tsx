@@ -449,34 +449,34 @@ const Header = () => {
         {/* Full-Width Visual Megamenu for Treatments - Docked directly to navbar bottom */}
         {activeDropdown === 'treatments' && (
           <div 
-            className="hidden lg:block absolute top-full left-0 right-0 w-full bg-white border-b border-subtle-border shadow-[0_30px_90px_rgba(0,0,0,0.20)] z-50 animate-in fade-in slide-in-from-top-1 duration-150"
+            className="hidden lg:block absolute top-full left-0 right-0 w-full bg-white border-b border-subtle-border shadow-[0_20px_50px_rgba(0,0,0,0.15)] z-50 animate-in fade-in slide-in-from-top-1 duration-150"
             onMouseEnter={() => setActiveDropdown('treatments')}
             onMouseLeave={() => setActiveDropdown(null)}
           >
-            <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-7">
+            <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-3.5 sm:py-4">
               {/* Header Strip */}
-              <div className="flex items-center justify-between pb-4 mb-5 border-b border-subtle-border">
-                <div className="flex items-center gap-3">
-                  <span className="text-xs uppercase tracking-[0.2em] font-bold text-amber-900 bg-amber-50 px-3.5 py-1.5 rounded-full border border-amber-200">
+              <div className="flex items-center justify-between pb-2.5 mb-3 border-b border-subtle-border">
+                <div className="flex items-center gap-2.5">
+                  <span className="text-[11px] uppercase tracking-[0.18em] font-bold text-amber-900 bg-amber-50 px-2.5 py-1 rounded-full border border-amber-200">
                     CLINICAL PROCEDURES & LASER AESTHETICS
                   </span>
-                  <span className="text-sm text-taupe hidden sm:inline">
+                  <span className="text-xs text-taupe hidden sm:inline">
                     US-FDA Approved Energy Systems & AIIMS Specialists
                   </span>
                 </div>
                 <Link 
                   href="/pages/our-doctors" 
                   onClick={() => setActiveDropdown(null)}
-                  className="text-xs sm:text-sm font-semibold text-charcoal hover:underline flex items-center gap-1.5"
+                  className="text-xs font-semibold text-charcoal hover:underline flex items-center gap-1.5"
                 >
                   <span>Meet Our 8 Board-Certified Doctors</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
               </div>
 
-              <div className="grid grid-cols-12 gap-7 min-h-[440px]">
-                {/* Left Column: Category Tabs (No grey scrollbar, spacious, elegant) */}
-                <div className="col-span-3 border-r border-subtle-border pr-4 space-y-1.5 max-h-[460px] overflow-y-auto no-scrollbar">
+              <div className="grid grid-cols-12 gap-5 max-h-[calc(100vh-170px)]">
+                {/* Left Column: Category Tabs (Compact & elegant, fits all 10 categories without cutting off) */}
+                <div className="col-span-3 border-r border-subtle-border pr-3 space-y-0.5 max-h-[350px] overflow-y-auto no-scrollbar">
                   {treatmentCategories.map((cat) => {
                     const isSelected = cat.id === selectedTreatmentCat;
                     return (
@@ -484,23 +484,23 @@ const Header = () => {
                         key={cat.id}
                         onMouseEnter={() => setSelectedTreatmentCat(cat.id)}
                         onClick={() => setSelectedTreatmentCat(cat.id)}
-                        className={`w-full flex items-center justify-between px-4 py-3 rounded-xl text-left text-sm font-medium transition-all duration-200 cursor-pointer ${
+                        className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-left text-xs sm:text-[13px] font-medium transition-all duration-150 cursor-pointer ${
                           isSelected
-                            ? 'bg-[#171717] text-white font-semibold shadow-sm translate-x-1'
+                            ? 'bg-[#171717] text-white font-semibold shadow-xs translate-x-0.5'
                             : 'text-charcoal hover:bg-ivory hover:text-black'
                         }`}
                       >
-                        <span>{cat.category}</span>
-                        <ChevronRight className={`w-3.5 h-3.5 transition-transform ${isSelected ? 'text-white' : 'text-taupe'}`} />
+                        <span className="truncate pr-1">{cat.category}</span>
+                        <ChevronRight className={`w-3.5 h-3.5 shrink-0 transition-transform ${isSelected ? 'text-white' : 'text-taupe'}`} />
                       </button>
                     );
                   })}
                 </div>
 
                 {/* Right Column: Visual Treatment Cards Grid with Images */}
-                <div className="col-span-9 pl-2">
-                  <div className="flex items-center justify-between mb-4">
-                    <h4 className="font-serif text-2xl font-medium text-charcoal">
+                <div className="col-span-9 pl-1">
+                  <div className="flex items-center justify-between mb-2.5">
+                    <h4 className="font-serif text-lg sm:text-xl font-medium text-charcoal">
                       {activeCategoryData.category}
                     </h4>
                     <span className="text-xs text-taupe font-medium">
@@ -508,29 +508,29 @@ const Header = () => {
                     </span>
                   </div>
 
-                  <div className="grid grid-cols-3 sm:grid-cols-4 gap-4 max-h-[420px] overflow-y-auto no-scrollbar pr-1">
+                  <div className="grid grid-cols-3 sm:grid-cols-4 gap-2.5 sm:gap-3 max-h-[310px] overflow-y-auto no-scrollbar pr-1">
                     {activeCategoryData.items.map((item, idx) => (
                       <Link
                         key={idx}
                         href={item.href}
                         onClick={() => setActiveDropdown(null)}
-                        className="group flex flex-col bg-[#FDFBF9] hover:bg-white border border-subtle-border hover:border-[#D5CDC4] rounded-2xl p-3 hover:shadow-lg transition-all duration-300"
+                        className="group flex flex-col bg-[#FDFBF9] hover:bg-white border border-subtle-border hover:border-[#D5CDC4] rounded-xl p-2.5 hover:shadow-md transition-all duration-200"
                       >
-                        <div className="relative aspect-[16/11] w-full rounded-xl overflow-hidden bg-ivory mb-2.5">
+                        <div className="relative aspect-[16/10] w-full rounded-lg overflow-hidden bg-ivory mb-2">
                           <Image
                             src={item.img}
                             alt={item.title}
                             fill
                             unoptimized
-                            className="object-cover group-hover:scale-108 transition-transform duration-500"
-                            sizes="240px"
+                            className="object-cover group-hover:scale-106 transition-transform duration-300"
+                            sizes="220px"
                           />
                         </div>
-                        <span className="font-medium text-xs sm:text-sm text-charcoal group-hover:text-black leading-snug line-clamp-2">
+                        <span className="font-medium text-xs text-charcoal group-hover:text-black leading-snug line-clamp-1">
                           {item.title}
                         </span>
-                        <span className="text-[11px] text-taupe group-hover:text-charcoal font-medium mt-1 flex items-center gap-1">
-                          View Procedure <ChevronRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
+                        <span className="text-[10px] sm:text-[11px] text-taupe group-hover:text-charcoal font-medium mt-0.5 flex items-center gap-1">
+                          View Procedure <ChevronRight className="w-2.5 h-2.5 group-hover:translate-x-0.5 transition-transform" />
                         </span>
                       </Link>
                     ))}
@@ -544,53 +544,53 @@ const Header = () => {
         {/* Full-Width Visual Megamenu for Shop Skincare - Docked directly to navbar bottom */}
         {activeDropdown === 'shop' && (
           <div 
-            className="hidden lg:block absolute top-full left-0 right-0 w-full bg-white border-b border-subtle-border shadow-[0_30px_90px_rgba(0,0,0,0.20)] z-50 animate-in fade-in slide-in-from-top-1 duration-150"
+            className="hidden lg:block absolute top-full left-0 right-0 w-full bg-white border-b border-subtle-border shadow-[0_20px_50px_rgba(0,0,0,0.15)] z-50 animate-in fade-in slide-in-from-top-1 duration-150"
             onMouseEnter={() => setActiveDropdown('shop')}
             onMouseLeave={() => setActiveDropdown(null)}
           >
-            <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-7">
-              <div className="flex items-center justify-between pb-4 mb-5 border-b border-subtle-border">
-                <div className="flex items-center gap-3">
-                  <span className="text-xs uppercase tracking-[0.2em] font-bold text-amber-900 bg-amber-50 px-3.5 py-1.5 rounded-full border border-amber-200">
+            <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-3.5 sm:py-4">
+              <div className="flex items-center justify-between pb-2.5 mb-3 border-b border-subtle-border">
+                <div className="flex items-center gap-2.5">
+                  <span className="text-[11px] uppercase tracking-[0.18em] font-bold text-amber-900 bg-amber-50 px-2.5 py-1 rounded-full border border-amber-200">
                     CLINICAL SKINCARE STORE
                   </span>
-                  <span className="text-sm text-taupe hidden sm:inline">
+                  <span className="text-xs text-taupe hidden sm:inline">
                     Authentic Physician-Curated Formulations (250+ Products)
                   </span>
                 </div>
                 <Link 
                   href="/collections/all" 
                   onClick={() => setActiveDropdown(null)}
-                  className="text-xs sm:text-sm font-semibold text-charcoal hover:underline flex items-center gap-1.5"
+                  className="text-xs font-semibold text-charcoal hover:underline flex items-center gap-1.5"
                 >
                   <span>Shop All Products</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
               </div>
 
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3.5 max-h-[440px] overflow-y-auto no-scrollbar pr-1">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2.5 max-h-[320px] overflow-y-auto no-scrollbar pr-1">
                 {categoriesData.map((cat, idx) => (
                   <Link
                     key={idx}
                     href={cat.href.startsWith('http') ? cat.href : '/collections/all'}
                     onClick={() => setActiveDropdown(null)}
-                    className="flex items-center gap-3 p-3 rounded-2xl bg-[#FDFBF9] hover:bg-white border border-subtle-border hover:border-[#D5CDC4] hover:shadow-md transition-all group"
+                    className="flex items-center gap-2.5 p-2.5 rounded-xl bg-[#FDFBF9] hover:bg-white border border-subtle-border hover:border-[#D5CDC4] hover:shadow-sm transition-all group"
                   >
-                    <div className="relative w-12 h-12 rounded-full overflow-hidden bg-white border border-subtle-border flex-shrink-0">
+                    <div className="relative w-10 h-10 rounded-full overflow-hidden bg-white border border-subtle-border flex-shrink-0">
                       <Image
                         src={cat.img}
                         alt={cat.name}
                         fill
                         unoptimized
-                        className="object-contain p-1.5 group-hover:scale-110 transition-transform duration-300"
-                        sizes="48px"
+                        className="object-contain p-1 group-hover:scale-108 transition-transform duration-300"
+                        sizes="40px"
                       />
                     </div>
                     <div className="truncate">
-                      <span className="text-xs sm:text-sm font-semibold text-charcoal group-hover:text-black block truncate">
+                      <span className="text-xs font-semibold text-charcoal group-hover:text-black block truncate">
                         {cat.name}
                       </span>
-                      <span className="text-[11px] text-taupe block">
+                      <span className="text-[10px] text-taupe block">
                         Explore Formulations
                       </span>
                     </div>
