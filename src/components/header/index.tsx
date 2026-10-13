@@ -135,12 +135,12 @@ const Header = () => {
                 Up to 30% Off on all Treatments • Board-Certified Dermatology Clinic & Skincare Store
               </span>
             </div>
-            <div className="hidden md:flex items-center space-x-5 text-[#D5CDC4] shrink-0">
+            <div className="hidden md:flex items-center space-x-3 xl:space-x-5 text-[#D5CDC4] shrink-0 text-xs">
               <span className="flex items-center gap-1.5 font-medium whitespace-nowrap">
                 <ShieldCheck className="w-3.5 h-3.5 text-[#EAE1D7]" /> 100% Genuine Formulations
               </span>
-              <span className="text-[#8C8177]">|</span>
-              <span className="flex items-center gap-1.5 font-medium whitespace-nowrap">
+              <span className="text-[#8C8177] hidden xl:inline">|</span>
+              <span className="hidden xl:flex items-center gap-1.5 font-medium whitespace-nowrap">
                 <Phone className="w-3.5 h-3.5 text-[#EAE1D7]" /> KIIT Road, Patia, Bhubaneswar
               </span>
               <span className="text-[#8C8177]">|</span>
@@ -160,7 +160,7 @@ const Header = () => {
             }`}
         >
           <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex items-center justify-between h-20 gap-3 xl:gap-8">
+            <div className="flex items-center justify-between h-16 sm:h-20 gap-3 xl:gap-8">
 
               {/* Logo */}
               <div className="flex items-center shrink-0">
@@ -597,63 +597,113 @@ const Header = () => {
             </div>
           )}
 
-          {/* Mobile Navigation Drawer with Visual Submenus */}
-          {mobileMenuOpen && (
-            <div className="lg:hidden border-t border-subtle-border bg-white px-6 py-8 space-y-6 max-h-[85vh] overflow-y-auto animate-in slide-in-from-top duration-300">
+        </header>
 
-              {/* Quick Consultation CTA */}
-              <div className="space-y-3">
+        {/* Mobile Navigation Drawer with Visual Submenus & Overlay */}
+        {mobileMenuOpen && (
+          <>
+            {/* Dimmed backdrop overlay behind mobile menu */}
+            <div
+              className="fixed inset-0 bg-black/50 backdrop-blur-[2px] z-30 lg:hidden transition-opacity duration-200"
+              onClick={() => setMobileMenuOpen(false)}
+              aria-hidden="true"
+            />
+
+            {/* Mobile Drawer docked below sticky header */}
+            <div className="lg:hidden absolute top-full left-0 right-0 w-full bg-white border-b border-subtle-border shadow-2xl max-h-[calc(100dvh-100%)] overflow-y-auto px-5 sm:px-6 py-6 space-y-6 z-40 overscroll-contain animate-in slide-in-from-top-2 duration-200">
+
+              {/* Quick Consultation & AI Check CTAs */}
+              <div className="grid grid-cols-2 gap-2.5">
                 <Link
                   href="/pages/contact"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="w-full flex items-center justify-center py-3.5 rounded-full text-xs tracking-wider uppercase font-semibold bg-[#171717] text-white"
+                  className="w-full flex items-center justify-center py-3 px-2 rounded-xl text-xs tracking-wider uppercase font-semibold bg-[#171717] text-white text-center hover:bg-black transition-colors shadow-sm"
                 >
-                  Book In-Clinic Consultation
+                  Book Consult
                 </Link>
                 <Link
                   href="/pages/allodermis-ai-analysis"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="w-full flex items-center justify-center gap-2 py-3 rounded-full text-xs font-semibold bg-ivory text-charcoal border border-subtle-border"
+                  className="w-full flex items-center justify-center gap-1.5 py-3 px-2 rounded-xl text-xs font-semibold bg-ivory text-charcoal border border-subtle-border text-center hover:bg-beige transition-colors"
                 >
-                  <Sparkles className="w-4 h-4 text-amber-600" />
-                  Free AI Skin Check
+                  <Sparkles className="w-3.5 h-3.5 text-amber-600 shrink-0" />
+                  Free AI Check
                 </Link>
               </div>
 
-              {/* Mobile Accordion for Treatments with Real Images */}
+              {/* Mobile Accordion for Treatments with Fast Category Switcher & Crisp Images */}
               <div className="pt-2 border-t border-subtle-border">
                 <button
                   onClick={() => setMobileTreatmentsOpen(!mobileTreatmentsOpen)}
                   className="w-full flex items-center justify-between py-2.5 text-base font-semibold text-charcoal"
                 >
-                  <span>Clinical Treatments</span>
-                  <ChevronDown className={`w-4 h-4 transition-transform ${mobileTreatmentsOpen ? 'rotate-180' : ''}`} />
+                  <span className="flex items-center gap-2">
+                    Clinical Treatments
+                    <span className="text-[10px] uppercase font-bold text-amber-900 bg-amber-50 px-2 py-0.5 rounded-full border border-amber-200">
+                      10 Areas
+                    </span>
+                  </span>
+                  <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${mobileTreatmentsOpen ? 'rotate-180' : ''}`} />
                 </button>
 
                 {mobileTreatmentsOpen && (
-                  <div className="pt-3 pb-2 space-y-4 max-h-[360px] overflow-y-auto pl-2">
-                    {treatmentCategories.map((cat) => (
-                      <div key={cat.id} className="space-y-2">
-                        <span className="text-xs uppercase tracking-wider font-bold text-amber-900 block">
-                          {cat.category}
+                  <div className="pt-2 pb-2 space-y-3">
+                    {/* Horizontal Category Switcher */}
+                    <div className="flex gap-1.5 overflow-x-auto pb-1.5 no-scrollbar -mx-1 px-1">
+                      {treatmentCategories.map((cat) => {
+                        const isSelected = cat.id === selectedTreatmentCat;
+                        return (
+                          <button
+                            key={cat.id}
+                            onClick={() => setSelectedTreatmentCat(cat.id)}
+                            className={`px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-all shrink-0 cursor-pointer ${
+                              isSelected
+                                ? 'bg-[#171717] text-white font-semibold shadow-xs'
+                                : 'bg-ivory text-charcoal hover:bg-beige border border-subtle-border'
+                            }`}
+                          >
+                            {cat.category}
+                          </button>
+                        );
+                      })}
+                    </div>
+
+                    {/* Active Category Procedures Grid */}
+                    <div className="bg-[#FAF8F5] rounded-2xl p-3 border border-subtle-border space-y-2.5">
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs uppercase tracking-wider font-bold text-amber-950">
+                          {activeCategoryData.category}
                         </span>
-                        <div className="grid grid-cols-2 gap-2">
-                          {cat.items.slice(0, 4).map((item, idx) => (
-                            <Link
-                              key={idx}
-                              href={item.href}
-                              onClick={() => setMobileMenuOpen(false)}
-                              className="flex items-center gap-2 p-2 rounded-xl bg-ivory/60 border border-subtle-border text-xs"
-                            >
-                              <div className="relative w-8 h-8 rounded-lg overflow-hidden flex-shrink-0">
-                                <Image src={item.img} alt={item.title} fill className="object-cover" sizes="32px" />
-                              </div>
-                              <span className="font-medium text-charcoal truncate">{item.title}</span>
-                            </Link>
-                          ))}
-                        </div>
+                        <span className="text-[11px] text-taupe font-medium">
+                          {activeCategoryData.items.length} procedures
+                        </span>
                       </div>
-                    ))}
+
+                      <div className="grid grid-cols-2 gap-2">
+                        {activeCategoryData.items.map((item, idx) => (
+                          <Link
+                            key={idx}
+                            href={item.href}
+                            onClick={() => setMobileMenuOpen(false)}
+                            className="group flex items-center gap-2 p-2 rounded-xl bg-white border border-subtle-border text-xs hover:border-[#D5CDC4] transition-all shadow-2xs"
+                          >
+                            <div className="relative w-9 h-9 rounded-lg overflow-hidden flex-shrink-0 bg-ivory">
+                              <Image
+                                src={item.img}
+                                alt={item.title}
+                                fill
+                                unoptimized
+                                className="object-cover group-hover:scale-105 transition-transform"
+                                sizes="36px"
+                              />
+                            </div>
+                            <span className="font-medium text-charcoal text-[11px] leading-tight line-clamp-2">
+                              {item.title}
+                            </span>
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
                   </div>
                 )}
               </div>
@@ -664,58 +714,211 @@ const Header = () => {
                   onClick={() => setMobileShopOpen(!mobileShopOpen)}
                   className="w-full flex items-center justify-between py-2.5 text-base font-semibold text-charcoal"
                 >
-                  <span>Shop Skincare by Category</span>
-                  <ChevronDown className={`w-4 h-4 transition-transform ${mobileShopOpen ? 'rotate-180' : ''}`} />
+                  <span className="flex items-center gap-2">
+                    Shop Skincare by Category
+                    <span className="text-[10px] uppercase font-bold text-amber-900 bg-amber-50 px-2 py-0.5 rounded-full border border-amber-200">
+                      250+ Rx
+                    </span>
+                  </span>
+                  <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${mobileShopOpen ? 'rotate-180' : ''}`} />
                 </button>
 
                 {mobileShopOpen && (
-                  <div className="grid grid-cols-2 gap-2.5 pt-3 pb-2">
-                    {categoriesData.map((cat, idx) => (
-                      <Link
-                        key={idx}
-                        href={cat.href.startsWith('http') ? cat.href : '/collections/all'}
-                        onClick={() => setMobileMenuOpen(false)}
-                        className="flex items-center gap-2 p-2.5 rounded-xl bg-ivory/60 border border-subtle-border"
-                      >
-                        <div className="relative w-8 h-8 rounded-full overflow-hidden bg-white flex-shrink-0">
-                          <Image src={cat.img} alt={cat.name} fill className="object-contain p-1" sizes="32px" />
-                        </div>
-                        <span className="text-xs font-medium text-charcoal truncate">{cat.name}</span>
-                      </Link>
-                    ))}
+                  <div className="pt-2 pb-2 space-y-3">
+                    <div className="grid grid-cols-2 gap-2">
+                      {categoriesData.map((cat, idx) => (
+                        <Link
+                          key={idx}
+                          href={cat.href.startsWith('http') ? cat.href : '/collections/all'}
+                          onClick={() => setMobileMenuOpen(false)}
+                          className="flex items-center gap-2 p-2 rounded-xl bg-[#FAF8F5] hover:bg-white border border-subtle-border transition-all"
+                        >
+                          <div className="relative w-8 h-8 rounded-full overflow-hidden bg-white flex-shrink-0 border border-subtle-border">
+                            <Image
+                              src={cat.img}
+                              alt={cat.name}
+                              fill
+                              unoptimized
+                              className="object-contain p-1"
+                              sizes="32px"
+                            />
+                          </div>
+                          <span className="text-xs font-medium text-charcoal truncate">
+                            {cat.name}
+                          </span>
+                        </Link>
+                      ))}
+                    </div>
+
+                    <Link
+                      href="/collections/all"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="flex items-center justify-between p-3 rounded-xl bg-[#171717] text-white text-xs font-semibold hover:bg-black transition-colors"
+                    >
+                      <span>Shop All Skincare Products</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </Link>
                   </div>
                 )}
               </div>
 
-              {/* General Navigation Links */}
-              <div className="pt-2 border-t border-subtle-border space-y-2.5 text-base font-medium">
-                <Link href="/pages/our-doctors" onClick={() => setMobileMenuOpen(false)} className="block py-1 hover:text-black">
-                  Our 8 Board-Certified Doctors
+              {/* General Navigation Links matching Desktop */}
+              <div className="pt-2 border-t border-subtle-border space-y-1.5 text-sm font-medium">
+                <Link
+                  href="/pages/acne-pimple"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="flex items-center justify-between py-2 px-2.5 rounded-xl text-charcoal hover:bg-ivory hover:text-black transition-colors"
+                >
+                  <span>Skin Conditions & Treatments</span>
+                  <ChevronRight className="w-4 h-4 text-taupe" />
                 </Link>
-                <Link href="/pages/reviews" onClick={() => setMobileMenuOpen(false)} className="block py-1 hover:text-black">
-                  Real Treatment Results & Reviews
+                <Link
+                  href="/pages/our-doctors"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="flex items-center justify-between py-2 px-2.5 rounded-xl text-charcoal hover:bg-ivory hover:text-black transition-colors"
+                >
+                  <span>Our 8 Board-Certified Doctors</span>
+                  <ChevronRight className="w-4 h-4 text-taupe" />
                 </Link>
-                <Link href="/pages/about" onClick={() => setMobileMenuOpen(false)} className="block py-1 hover:text-black">
-                  About Allodermis Clinic
+                <Link
+                  href="/pages/reviews"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="flex items-center justify-between py-2 px-2.5 rounded-xl text-charcoal hover:bg-ivory hover:text-black transition-colors"
+                >
+                  <span>Real Treatment Results & Reviews</span>
+                  <ChevronRight className="w-4 h-4 text-taupe" />
                 </Link>
-                <Link href="/pages/contact" onClick={() => setMobileMenuOpen(false)} className="block py-1 hover:text-black">
-                  Clinic Location & Contact
+                <Link
+                  href="/pages/about"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="flex items-center justify-between py-2 px-2.5 rounded-xl text-charcoal hover:bg-ivory hover:text-black transition-colors"
+                >
+                  <span>About Allodermis Clinic (Why Us)</span>
+                  <ChevronRight className="w-4 h-4 text-taupe" />
+                </Link>
+                <Link
+                  href="/pages/contact"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="flex items-center justify-between py-2 px-2.5 rounded-xl text-charcoal hover:bg-ivory hover:text-black transition-colors"
+                >
+                  <span>Clinic Location & Contact</span>
+                  <ChevronRight className="w-4 h-4 text-taupe" />
                 </Link>
               </div>
 
+              {/* Mobile User Profile / Auth & Wishlist */}
+              <div className="pt-2 border-t border-subtle-border">
+                {isAuthenticated && user ? (
+                  <div className="bg-[#FAF8F5] border border-subtle-border rounded-2xl p-3.5 space-y-3">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2.5">
+                        <div className="w-8 h-8 rounded-full bg-[#171717] text-[#EAE1D7] flex items-center justify-center text-xs font-semibold">
+                          {user.firstName[0]}
+                        </div>
+                        <div>
+                          <p className="text-xs font-semibold text-charcoal">
+                            {user.firstName} {user.lastName}
+                          </p>
+                          <p className="text-[11px] text-taupe truncate">{user.email}</p>
+                        </div>
+                      </div>
+                      <span className="px-2 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider bg-emerald-50 text-emerald-800 border border-emerald-200">
+                        {user.memberTier}
+                      </span>
+                    </div>
+                    <div className="grid grid-cols-2 gap-2 pt-2 border-t border-subtle-border">
+                      <Link
+                        href="/account"
+                        onClick={() => setMobileMenuOpen(false)}
+                        className="flex items-center justify-center gap-1.5 py-2 px-2 text-xs font-medium bg-white rounded-xl border border-subtle-border text-charcoal"
+                      >
+                        <UserIcon className="w-3.5 h-3.5 text-taupe" />
+                        Dashboard
+                      </Link>
+                      <Link
+                        href="/wishlist"
+                        onClick={() => setMobileMenuOpen(false)}
+                        className="flex items-center justify-center gap-1.5 py-2 px-2 text-xs font-medium bg-white rounded-xl border border-subtle-border text-charcoal"
+                      >
+                        <Heart className="w-3.5 h-3.5 text-taupe" />
+                        Wishlist ({wishlist.length})
+                      </Link>
+                    </div>
+                    <button
+                      onClick={() => {
+                        logout();
+                        setMobileMenuOpen(false);
+                      }}
+                      className="w-full py-1.5 text-xs font-medium text-rose-600 hover:text-rose-700 flex items-center justify-center gap-1.5 cursor-pointer"
+                    >
+                      <LogOut className="w-3.5 h-3.5" />
+                      Sign Out
+                    </button>
+                  </div>
+                ) : (
+                  <div className="space-y-2.5">
+                    <div className="grid grid-cols-2 gap-2">
+                      <button
+                        onClick={() => {
+                          setMobileMenuOpen(false);
+                          openAuthModal('login');
+                        }}
+                        className="py-2.5 px-3 rounded-xl bg-[#171717] text-white text-xs font-semibold uppercase tracking-wider text-center cursor-pointer"
+                      >
+                        Sign In
+                      </button>
+                      <button
+                        onClick={() => {
+                          setMobileMenuOpen(false);
+                          openAuthModal('register');
+                        }}
+                        className="py-2.5 px-3 rounded-xl bg-ivory text-charcoal border border-subtle-border text-xs font-semibold uppercase tracking-wider text-center cursor-pointer"
+                      >
+                        Register
+                      </button>
+                    </div>
+                    <Link
+                      href="/wishlist"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="flex items-center justify-between p-2.5 rounded-xl bg-[#FAF8F5] border border-subtle-border text-xs font-medium text-charcoal"
+                    >
+                      <span className="flex items-center gap-2">
+                        <Heart className="w-4 h-4 text-taupe" />
+                        Saved Wishlist
+                      </span>
+                      <span className="font-semibold text-charcoal">
+                        {wishlist.length} item{wishlist.length !== 1 ? 's' : ''}
+                      </span>
+                    </Link>
+                  </div>
+                )}
+              </div>
+
+              {/* Clinic Quick Info */}
+              <div className="pt-2 border-t border-subtle-border space-y-1.5 text-xs text-taupe">
+                <div className="flex items-center gap-2">
+                  <MapPin className="w-3.5 h-3.5 shrink-0 text-[#171717]" />
+                  <span>KIIT Road, Patia, Bhubaneswar, Odisha</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Phone className="w-3.5 h-3.5 shrink-0 text-[#171717]" />
+                  <span>Mon - Sat: 10:00 AM - 8:00 PM</span>
+                </div>
+              </div>
+
             </div>
-          )}
-        </header>
+          </>
+        )}
       </div>
 
       {/* Visual Search Modal with Live Product Cards & Images (Matching Allodermis search dropdown) */}
       {searchOpen && (
         <div
-          className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-start justify-center pt-20 px-4 animate-in fade-in duration-200"
+          className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-start justify-center pt-4 sm:pt-20 px-3 sm:px-4 animate-in fade-in duration-200"
           onClick={() => setSearchOpen(false)}
         >
           <div
-            className="bg-white rounded-3xl w-full max-w-4xl p-6 sm:p-8 shadow-2xl border border-subtle-border space-y-6"
+            className="bg-white rounded-2xl sm:rounded-3xl w-full max-w-4xl p-4 sm:p-8 shadow-2xl border border-subtle-border space-y-4 sm:space-y-6 max-h-[92vh] overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between pb-3 border-b border-subtle-border">
@@ -746,7 +949,7 @@ const Header = () => {
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="What are you looking for? (e.g. Aclaris, Photon, Sebamed, Retinol)..."
                 autoFocus
-                className="w-full pl-12 pr-4 py-4 bg-[#FAF8F5] rounded-2xl text-base text-charcoal placeholder:text-taupe focus:bg-white focus:outline-none focus:ring-2 focus:ring-charcoal border border-subtle-border transition-all"
+                className="w-full pl-11 sm:pl-12 pr-4 py-3 sm:py-4 bg-[#FAF8F5] rounded-xl sm:rounded-2xl text-sm sm:text-base text-charcoal placeholder:text-taupe focus:bg-white focus:outline-none focus:ring-2 focus:ring-charcoal border border-subtle-border transition-all"
               />
             </form>
 
@@ -756,7 +959,7 @@ const Header = () => {
                 Most Searched Products
               </span>
 
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
                 {featuredSearchProducts.map((p) => {
                   const pImg = p.images?.[0]?.src || p.image?.src || '';
                   const pPrice = p.variants?.[0]?.price || '0';
@@ -773,6 +976,7 @@ const Header = () => {
                             src={pImg}
                             alt={p.title}
                             fill
+                            unoptimized
                             className="object-contain p-2 group-hover:scale-105 transition-transform"
                             sizes="160px"
                           />
